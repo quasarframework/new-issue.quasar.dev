@@ -11,15 +11,34 @@ require(`./themes/app.${__THEME}.styl`)
 // require(`quasar/dist/quasar.ie.${__THEME}.css`)
 
 import Vue from 'vue'
-import Quasar, { QBtn, QLayout, QIcon, QToolbar, QToolbarTitle, QTooltip } from 'quasar'
+import Quasar, {
+  QBtn,
+  QField,
+  QLayout,
+  QIcon,
+  QInput,
+  QSelect,
+  QStepper,
+  QStep,
+  QStepperNavigation,
+  QToolbar,
+  QToolbarTitle,
+  QTooltip
+} from 'quasar'
 import router from './router'
 
 Vue.config.productionTip = false
 Vue.use(Quasar, {
   components: {
     QBtn,
+    QField,
     QLayout,
     QIcon,
+    QInput,
+    QSelect,
+    QStepper,
+    QStep,
+    QStepperNavigation,
     QToolbar,
     QToolbarTitle,
     QTooltip
@@ -29,7 +48,7 @@ Vue.use(Quasar, {
 if (__THEME === 'mat') {
   // require('quasar-extras/roboto-font')
 }
-// import 'quasar-extras/material-icons'
+import 'quasar-extras/material-icons'
 // import 'quasar-extras/ionicons'
 import 'quasar-extras/fontawesome'
 // import 'quasar-extras/animate'
