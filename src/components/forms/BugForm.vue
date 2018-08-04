@@ -10,31 +10,24 @@
       />
     </q-field>
 
-    <div class="row sm-gutter">
-      <div class="col">
-        <q-field helper="What is the expected behaviour?">
-          <q-input
-              v-model="expected"
-              type="textarea"
-              float-label="Expected Behaviour"
-              color="primary"
-              required
-          />
-        </q-field>
-      </div>
-
-      <div class="col">
-        <q-field helper="What is the actual behaviour?">
-          <q-input
-              v-model="actual"
-              type="textarea"
-              float-label="Actual Behaviour"
-              color="primary"
-              required
-          />
-        </q-field>
-      </div>
-    </div>
+    <q-field helper="What should happen?">
+      <q-input
+          v-model="expected"
+          type="textarea"
+          float-label="Expected Behaviour"
+          color="primary"
+          required
+      />
+    </q-field>
+    <q-field helper="What actually happens?">
+      <q-input
+          v-model="actual"
+          type="textarea"
+          float-label="Actual Behaviour"
+          color="primary"
+          required
+      />
+    </q-field>
   </div>
 </template>
 
