@@ -29,7 +29,7 @@
     </div>
 
     <q-field helper="One line summary of your issue.">
-      <q-input v-model="title" stack-label="Title" color="tertiary" inverted required />
+      <q-input v-model="title" stack-label="Title" color="tertiary" inverted required/>
     </q-field>
 
     <component :is="issueTypeForm"></component>
@@ -37,37 +37,37 @@
 </template>
 
 <script>
-  import { repos, issueTypes, issueTypeMapping } from '../config'
+import { issueTypeMapping, issueTypes, repos } from '../config'
 
-  import BugForm from './forms/BugForm.vue'
-  import RequestForm from './forms/RequestForm.vue'
+import BugForm from './forms/BugForm.vue'
+import RequestForm from './forms/RequestForm.vue'
 
-  export default {
-    data () {
-      return {
-        repo: '',
-        type: '',
-        title: '',
-        repos,
-        issueTypes
-      }
-    },
-
-    computed: {
-      issueTypeForm () {
-        return issueTypeMapping[this.type] || null
-      },
-
-      repoOptions () {
-        return this.repos.map(repo => {
-          return { label: repo.name, value: repo.id }
-        })
-      }
-    },
-
-    components: {
-      BugForm,
-      RequestForm
+export default {
+  data () {
+    return {
+      repo: '',
+      type: '',
+      title: '',
+      repos,
+      issueTypes
     }
+  },
+
+  computed: {
+    issueTypeForm () {
+      return issueTypeMapping[this.type] || null
+    },
+
+    repoOptions () {
+      return this.repos.map(repo => {
+        return {label: repo.name, value: repo.id}
+      })
+    }
+  },
+
+  components: {
+    BugForm,
+    RequestForm
   }
+}
 </script>
