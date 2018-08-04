@@ -21,7 +21,7 @@ import ComposeStep from './ComposeStep.vue'
 import PreviewStep from './PreviewStep.vue'
 
 export default {
-  name: 'base',
+  name: 'BaseStepper',
   components: {
     BeforeStartStep,
     ComposeStep,
