@@ -16,18 +16,18 @@
 </template>
 
 <script>
-  import BeforeStartStep from './BeforeStartStep.vue'
-  import ComposeStep from './ComposeStep.vue'
-  import PreviewStep from './PreviewStep.vue'
+import BeforeStartStep from './BeforeStartStep.vue'
+import ComposeStep from './ComposeStep.vue'
+import PreviewStep from './PreviewStep.vue'
 
-  export default {
-    name: 'base',
-    components: {
-      BeforeStartStep,
-      ComposeStep,
-      PreviewStep
-    }
+export default {
+  name: 'base',
+  components: {
+    BeforeStartStep,
+    ComposeStep,
+    PreviewStep
   }
+}
 </script>
 
 <style lang="stylus">
