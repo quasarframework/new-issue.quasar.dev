@@ -5,17 +5,22 @@
     <p>
       <strong>The issue list is reserved exclusively for bug reports and feature requests.</strong>
       <br>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-      dolore magna aliquyam erat
+    </p>
+    <p>
+      <strong>
+        Ask a question here:
+      </strong>
     </p>
 
     <p class="light-paragraph text-justify">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-      dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-      consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-      sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-      takimata sanctus est Lorem ipsum dolor sit amet.
+      Create jsFiddle or Codepen if possible (v.0.15+)
     </p>
+    <p class="q-headline">Templates</p>
+    <ul>
+      <li><a href="https://jsfiddle.net/rstoenescu/waugrryy/"> jsFiddle - Material theme</a></li>
+      <li><a href="https://jsfiddle.net/rstoenescu/7gu065yg//"> jsFiddle - iOS theme</a></li>
+      <li><a href="https://codepen.io/rstoenescu/pen/KQRZJg">Codepen - Material theme</a></li>
+      <li><a href="https://codepen.io/rstoenescu/pen/paVpBN">Codepen - iOS theme</a></li>
+    </ul>
   </q-step>
 </template>
