@@ -12,7 +12,7 @@
             <q-tooltip>Documentation</q-tooltip>
           </q-icon>
         </q-btn>
-        <q-btn flat @click="openExternal('https://discord.gg/5TDhbDg/')">
+        <q-btn flat @click="openExternal('https://discord.gg/5TDhbDg')">
           <q-icon name="fab fa-discord">
             <q-tooltip>Discord</q-tooltip>
           </q-icon>
