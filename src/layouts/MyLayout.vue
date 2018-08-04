@@ -12,6 +12,11 @@
             <q-tooltip>Documentation</q-tooltip>
           </q-icon>
         </q-btn>
+        <q-btn flat @click="openExternal('https://discord.gg/5TDhbDg/')">
+          <q-icon name="fab fa-discord">
+            <q-tooltip>Discord</q-tooltip>
+          </q-icon>
+        </q-btn>
 
         <q-btn flat @click="openExternal('http://forum.quasar-framework.org/')">
           <q-icon name="fa fa-comments">
@@ -28,7 +33,7 @@
     </q-layout-header>
 
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
   </q-layout>
 </template>
