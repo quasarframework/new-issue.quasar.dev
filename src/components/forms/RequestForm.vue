@@ -31,12 +31,13 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        problem: '',
-        api: ''
-      }
+export default {
+  name: 'RequestForm',
+  data () {
+    return {
+      problem: '',
+      api: ''
     }
   }
+}
 </script>

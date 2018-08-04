@@ -45,13 +45,14 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        reproduce: '',
-        expected: '',
-        actual: ''
-      }
+export default {
+  name: 'BugForm',
+  data () {
+    return {
+      reproduce: '',
+      expected: '',
+      actual: ''
     }
   }
+}
 </script>

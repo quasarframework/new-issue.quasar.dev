@@ -1,12 +1,15 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    <div class="q-headline">Request a Feature</div>
+    <request-form/>
   </q-page>
 </template>
 
 <script>
+import RequestForm from '../components/forms/RequestForm'
 export default {
-  name: 'FeatureRequest'
+  name: 'FeatureRequest',
+  components: {RequestForm}
 }
 </script>
 
