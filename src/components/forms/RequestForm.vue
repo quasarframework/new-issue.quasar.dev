@@ -4,10 +4,8 @@
       <q-input
           v-model="problem"
           type="textarea"
-          :min-rows="7"
-          stack-label="Problem"
+          float-label="Problem"
           color="tertiary"
-          inverted
           requried
       />
     </q-field>
@@ -19,9 +17,8 @@
               v-model="api"
               type="textarea"
               :min-rows="7"
-              stack-label="Proposed API"
+              float-label="Proposed API"
               color="tertiary"
-              inverted
               requried
           />
         </q-field>

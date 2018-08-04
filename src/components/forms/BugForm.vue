@@ -4,10 +4,8 @@
       <q-input
           v-model="reproduce"
           type="textarea"
-          :min-rows="7"
-          stack-label="Reproduction Steps"
+          float-label="Reproduction Steps"
           color="tertiary"
-          inverted
           required
       />
     </q-field>
@@ -18,10 +16,8 @@
           <q-input
               v-model="expected"
               type="textarea"
-              :min-rows="7"
-              stack-label="Expected Behaviour"
-              color="tertiary"
-              inverted
+              float-label="Expected Behaviour"
+              color="primary"
               required
           />
         </q-field>
@@ -32,10 +28,8 @@
           <q-input
               v-model="actual"
               type="textarea"
-              :min-rows="7"
-              stack-label="Actual Behaviour"
-              color="tertiary"
-              inverted
+              float-label="Actual Behaviour"
+              color="primary"
               required
           />
         </q-field>
