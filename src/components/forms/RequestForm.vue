@@ -13,7 +13,6 @@
       <q-input
           v-model="api"
           type="textarea"
-          :min-rows="7"
           float-label="Proposed API"
           color="tertiary"
           requried
