@@ -8,6 +8,7 @@
                     :bad="dontList"
                     placeholder="Add support for windows 95"
                     label="Title"
+                    required
                     prefix="[Feature]"/>
       <hinted-field
           v-model="api"
@@ -15,7 +16,7 @@
           label="How to use it?"
           placeholder="<new-component :new-prop />"
           color="primary"
-          requried
+          required
           :rows="3"
       />
       <hinted-field
@@ -25,7 +26,7 @@
           label="Reason add it?"
           placeholder="Makes stuff easier."
           color="primary"
-          requried
+          required
           :rows="3"
       />
       <q-btn color="primary" class="float-right q-ma-lg" @click="create" type="submit">Create</q-btn>
