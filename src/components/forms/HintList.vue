@@ -6,7 +6,7 @@
     <q-item v-for="(doItem, i) in list" :key="'do' + i">
       <q-item-side v-if="positive" icon="check" color="positive"></q-item-side>
       <q-item-side v-else icon="clear" color="negative"></q-item-side>
-      <q-item-main :label="doItem">
+      <q-item-main :sublabel="doItem">
 
       </q-item-main>
     </q-item>

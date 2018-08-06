@@ -62,7 +62,8 @@ module.exports = function (ctx) {
         'QStepperNavigation',
         'QInput',
         'QField',
-        'QSelect'
+        'QSelect',
+        'QSlideTransition'
       ],
       directives: [
         'Ripple'
