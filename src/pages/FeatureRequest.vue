@@ -2,6 +2,13 @@
   <q-page padding>
     <form @submit.prevent="create">
       <div class="q-headline q-ma-lg">Feature Request</div>
+      <q-field class="q-pa-lg shadow-1 q-ma-lg">
+        <q-select
+            v-model="repo" :options="repoOptions"
+            stack-label="Repository"
+            required
+        />
+      </q-field>
       <q-field helper="Descriptive - Request must be understood without opening the issue!"
                class="q-pa-lg shadow-1 q-ma-lg">
         <q-input v-model="form.title"
@@ -43,6 +50,11 @@ import RequestForm from '../components/forms/RequestForm'
 import HintedField from '../components/forms/HintedField'
 import { required } from 'vuelidate/lib/validators'
 import openGithubIssue from '../utils/open-github-issue'
+import { repos } from '../config'
+
+const repoOptions = repos.map(repo => {
+  return {label: repo.name, value: repo.id}
+})
 
 export default {
   name: 'FeatureRequest',
@@ -68,13 +80,14 @@ export default {
         problem: '',
         canImplement: false
       },
-      repo: 'panstromek/new-issue.quasar-framework.org',
       doList: [
         'QInput add :random-color prop'
       ],
       dontList: [
         'Add new feature'
-      ]
+      ],
+      repoOptions: repoOptions,
+      repo: repoOptions[0].value
     }
   },
   methods: {
