@@ -1,10 +1,11 @@
 <template>
   <q-list separator dense>
-    <q-list-header>
+    <q-list-header v-if="label">
       {{label}}
     </q-list-header>
     <q-item v-for="(doItem, i) in list" :key="'do' + i">
       <q-item-side v-if="positive" icon="check" color="positive"></q-item-side>
+      <q-item-side v-else-if="info"  color="primary"></q-item-side>
       <q-item-side v-else icon="clear" color="negative"></q-item-side>
       <q-item-main :sublabel="doItem">
 
@@ -27,6 +28,10 @@ export default {
       }
     },
     positive: {
+      type: Boolean,
+      default: false
+    },
+    info: {
       type: Boolean,
       default: false
     }

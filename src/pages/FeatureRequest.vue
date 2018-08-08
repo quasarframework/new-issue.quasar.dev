@@ -3,30 +3,26 @@
     <form @submit.prevent="create">
 
       <div class="q-headline q-ma-lg">Request a Feature</div>
-      <hinted-field v-model="title"
+      <hinted-field v-model="form.title"
+                    :info="['Reader must understand the request without opening the issue.']"
                     :good="doList"
                     :bad="dontList"
                     placeholder="Add support for windows 95"
                     label="Title"
-                    required
                     prefix="[Feature]"/>
       <hinted-field
-          v-model="api"
+          v-model="form.api"
           type="textarea"
           label="How to use it?"
           placeholder="<new-component :new-prop />"
-          color="primary"
-          required
           :rows="3"
       />
       <hinted-field
           helper="What problem does this feature solve?"
-          v-model="problem"
+          v-model="form.problem"
           type="textarea"
           label="Reason add it?"
           placeholder="Makes stuff easier."
-          color="primary"
-          required
           :rows="3"
       />
       <q-btn color="primary" class="float-right q-ma-lg" @click="create" type="submit">Create</q-btn>
@@ -37,15 +33,31 @@
 <script>
 import RequestForm from '../components/forms/RequestForm'
 import HintedField from '../components/forms/HintedField'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'FeatureRequest',
   components: {HintedField, RequestForm},
+  validations: {
+    form: {
+      title: {
+        required
+      },
+      api: {
+        required
+      },
+      problem: {
+        required
+      }
+    }
+  },
   data () {
     return {
-      title: '',
-      api: '',
-      problem: '',
+      form: {
+        title: '',
+        api: '',
+        problem: ''
+      },
       repo: 'panstromek/new-issue.quasar-framework.org',
       doList: [
         'QInput add :random-color prop'
@@ -70,6 +82,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

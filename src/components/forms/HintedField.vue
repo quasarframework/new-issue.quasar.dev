@@ -16,6 +16,7 @@
 
       <q-slide-transition appear>
         <div v-show="focused">
+          <hint-list v-if="info.length>0" info :list="info"/>
           <hint-list v-if="good.length>0" label="Good" :list="good" positive/>
           <hint-list v-if="bad.length>0" label="Bad" :list="bad"/>
         </div>
@@ -37,6 +38,10 @@ export default {
       default: () => []
     },
     bad: {
+      type: Array,
+      default: () => []
+    },
+    info: {
       type: Array,
       default: () => []
     },
