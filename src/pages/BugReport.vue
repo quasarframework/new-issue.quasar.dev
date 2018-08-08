@@ -34,7 +34,7 @@
         <q-input
             v-model="expected"
             type="textarea"
-            float-label="Expected"
+            float-label="Expected behaviour"
             color="primary"
             required
         />
@@ -44,7 +44,7 @@
         <q-input
             v-model="actual"
             type="textarea"
-            float-label="Actual"
+            float-label="Actual behaviour"
             color="primary"
             required
         />
