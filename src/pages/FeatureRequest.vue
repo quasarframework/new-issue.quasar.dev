@@ -2,29 +2,34 @@
   <q-page padding>
     <form @submit.prevent="create">
 
-      <div class="q-headline q-ma-lg">Request a Feature</div>
-      <hinted-field v-model="form.title"
-                    :info="['Reader must understand the request without opening the issue.']"
-                    :good="doList"
-                    :bad="dontList"
-                    placeholder="Add support for windows 95"
-                    label="Title"
-                    prefix="[Feature]"/>
-      <hinted-field
-          v-model="form.api"
-          type="textarea"
-          label="How to use it?"
-          placeholder="<new-component :new-prop />"
-          :rows="3"
-      />
-      <hinted-field
-          helper="What problem does this feature solve?"
-          v-model="form.problem"
-          type="textarea"
-          label="Reason add it?"
-          placeholder="Makes stuff easier."
-          :rows="3"
-      />
+      <div class="q-headline q-ma-lg">Feature Request</div>
+      <q-field helper="Be descriptive - must be understood without opening the issue!" class="q-pa-lg shadow-1 q-ma-lg">
+        <q-input v-model="form.title"
+                 placeholder="Add support for windows 95"
+                 float-label="Title"
+                 prefix="[Feature]"/>
+      </q-field>
+      <q-field helper="Proposed API" class="q-pa-lg shadow-1 q-ma-lg">
+        <q-input
+            v-model="form.api"
+            type="textarea"
+            float-label="How to use it?"
+            placeholder="E.g. <new-component :new-prop /> ..."
+            :rows="2"
+        />
+      </q-field>
+      <q-field class="q-pa-lg shadow-1 q-ma-lg">
+        <q-input
+            v-model="form.problem"
+            type="textarea"
+            float-label="Reason add it?"
+            placeholder="Convince us..."
+            :rows="2"
+        />
+      </q-field>
+      <q-field class="q-pa-lg shadow-1 q-ma-lg">
+        <q-checkbox v-model="form.canImplement" label="I can implement this."/>
+      </q-field>
       <q-btn color="primary" class="float-right q-ma-lg" @click="create" type="submit">Create</q-btn>
     </form>
   </q-page>
@@ -56,7 +61,8 @@ export default {
       form: {
         title: '',
         api: '',
-        problem: ''
+        problem: '',
+        canImplement: false
       },
       repo: 'panstromek/new-issue.quasar-framework.org',
       doList: [
