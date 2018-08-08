@@ -11,6 +11,13 @@
         />
       </q-field>
 
+      <q-field helper="Descriptive - Bug must be understood without opening the issue!" class="q-pa-lg shadow-1 q-ma-lg">
+        <q-input v-model="title"
+                 placeholder="E.g. QInput doesn't show placeholder in electron on windows 8"
+                 float-label="Title"
+                 prefix="[Bug]"/>
+      </q-field>
+
       <q-field helper="Write a list if possible." class="q-pa-lg shadow-1 q-ma-lg">
         <q-input
             v-model="reproduce"
@@ -81,6 +88,7 @@ export default {
   components: {},
   data () {
     return {
+      title: '',
       reproduce: '',
       expected: '',
       actual: '',

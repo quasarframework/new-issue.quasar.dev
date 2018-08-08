@@ -3,7 +3,8 @@
     <form @submit.prevent="create">
 
       <div class="q-headline q-ma-lg">Feature Request</div>
-      <q-field helper="Be descriptive - must be understood without opening the issue!" class="q-pa-lg shadow-1 q-ma-lg">
+      <q-field helper="Descriptive - Request must be understood without opening the issue!"
+               class="q-pa-lg shadow-1 q-ma-lg">
         <q-input v-model="form.title"
                  placeholder="Add support for windows 95"
                  float-label="Title"
@@ -39,6 +40,7 @@
 import RequestForm from '../components/forms/RequestForm'
 import HintedField from '../components/forms/HintedField'
 import { required } from 'vuelidate/lib/validators'
+import openGithubIssue from '../utils/open-github-issue'
 
 export default {
   name: 'FeatureRequest',
@@ -81,9 +83,10 @@ export default {
       return '[Feature] ' + this.title
     },
     create () {
-      const title = encodeURIComponent(this.buildTitle()).replace(/%2B/gi, '+')
-      const body = encodeURIComponent(this.buildBody()).replace(/%2B/gi, '+')
-      window.open(`https://github.com/${this.repo}/issues/new?title=${title}&body=${body}`)
+      let repo = this.repo
+      let rawTitle = this.buildTitle()
+      let rawBody = this.buildBody()
+      openGithubIssue(rawTitle, rawBody, repo)
     }
   }
 }
