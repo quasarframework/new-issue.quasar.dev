@@ -56,7 +56,6 @@ const repoOptions = repos.map(repo => {
 
 export default {
   name: 'FeatureRequest',
-  components: {HintedField, RequestForm},
   validations: {
     form: {
       title: {

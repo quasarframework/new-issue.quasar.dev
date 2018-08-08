@@ -86,7 +86,6 @@ const repoOptions = repos.map(repo => {
 
 export default {
   name: 'BugReport',
-  components: {},
   data () {
     return {
       title: '',
