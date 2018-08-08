@@ -46,8 +46,6 @@
 </template>
 
 <script>
-import RequestForm from '../components/forms/RequestForm'
-import HintedField from '../components/forms/HintedField'
 import { required } from 'vuelidate/lib/validators'
 import openGithubIssue from '../utils/open-github-issue'
 import { repos } from '../config'
