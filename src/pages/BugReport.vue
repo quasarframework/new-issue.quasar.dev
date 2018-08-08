@@ -11,7 +11,8 @@
         />
       </q-field>
 
-      <q-field helper="Descriptive - Bug must be understood without opening the issue!" class="q-pa-lg shadow-1 q-ma-lg">
+      <q-field helper="Descriptive - Bug must be understood without opening the issue!"
+               class="q-pa-lg shadow-1 q-ma-lg">
         <q-input v-model="title"
                  placeholder="E.g. QInput doesn't show placeholder in electron on windows 8"
                  float-label="Title"
@@ -20,7 +21,7 @@
 
       <q-field helper="Write a list if possible." class="q-pa-lg shadow-1 q-ma-lg">
         <q-input
-            v-model="reproduce"
+            v-model="reproductionSteps"
             type="textarea"
             float-label="Steps to reproduce"
             :placeholder="'1. ...\n2. ...'"
@@ -55,7 +56,6 @@
             type="url"
             float-label="Minimal Reproduction"
             placeholder="Url..."
-            required
         />
       </q-field>
       <q-field helper="Tip: run 'quasar info' and paste the result here" class="q-pa-lg shadow-1 q-ma-lg">
@@ -78,6 +78,7 @@
 
 <script>
 import { repos } from '../config'
+import openGithubIssue from '../utils/open-github-issue'
 
 const repoOptions = repos.map(repo => {
   return {label: repo.name, value: repo.id}
@@ -89,7 +90,7 @@ export default {
   data () {
     return {
       title: '',
-      reproduce: '',
+      reproductionSteps: '',
       expected: '',
       actual: '',
       quasarInfo: '',
@@ -99,8 +100,28 @@ export default {
     }
   },
   methods: {
+    buildTitle () {
+      return `[Bug] ${this.title}`
+    },
+    buildBody () {
+      return `#### Steps
+${this.reproductionSteps}
+#### Expected
+${this.expected}
+#### Actual
+${this.actual}
+
+${this.reproductionLink ? `#### Reproduction link
+${this.reproductionLink}` : ''}
+
+#### Info
+\`\`\`
+${this.quasarInfo}
+\`\`\`
+`
+    },
     submit () {
-      console.log('submit')
+      openGithubIssue(this.buildTitle(), this.buildBody(), this.repo)
     }
   }
 }

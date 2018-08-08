@@ -3,7 +3,7 @@
     <div class="q-headline">
       Help
     </div>
-    <p class="q-ma-md">
+    <p class="q-ma-md q-caption">
       Our experts are here to help you online 24/7
     </p>
     <q-btn icon="fab fa-discord"
