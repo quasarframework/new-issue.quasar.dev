@@ -2,7 +2,7 @@
 
   <div>
 
-    <q-field helper="Write a list if possible.">
+    <q-field helper="Describe steps needed to make this bug happen. We need to reproduce the bug to fix it.">
       <q-input
           v-model="reproductionSteps"
           type="textarea"
@@ -45,21 +45,31 @@
         />
       </q-field>
 
-      <q-field class="col-6" helper="JsFiddle, Codepen or simple project repo.">
-        <q-input
-            v-model="reproductionLink"
-            type="url"
-            float-label="Minimal Reproduction"
-            placeholder="Url..."
-        />
-      </q-field>
+      <div class="col-6">
+        <q-field helper="JsFiddle, Codepen or simple project repo.">
+          <q-input
+              v-model="reproductionLink"
+              type="url"
+              float-label="Minimal Reproduction"
+              placeholder="Url..."
+          />
+        </q-field>
+        <p class="q-headline">Templates</p>
+        <p>You can fork one of these.</p>
+        <ul>
+          <li><a href="https://jsfiddle.net/rstoenescu/waugrryy/"> jsFiddle - Material theme</a></li>
+          <li><a href="https://jsfiddle.net/rstoenescu/7gu065yg//"> jsFiddle - iOS theme</a></li>
+          <li><a href="https://codepen.io/rstoenescu/pen/KQRZJg">Codepen - Material theme</a></li>
+          <li><a href="https://codepen.io/rstoenescu/pen/paVpBN">Codepen - iOS theme</a></li>
+        </ul>
+      </div>
     </div>
 
     <q-field class="col-6" helper="Tip: run 'quasar info' and paste the result here">
       <q-input
           v-model="quasarInfo"
           type="textarea"
-          float-label="Technical info"
+          float-label="System info"
           placeholder="Quasar v0.17.3, Win 95, ..."
           required
           rows="2"
