@@ -1,36 +1,20 @@
 <template>
-  <q-page padding>
-    <div class="q-headline q-ma-lg">Report a bug</div>
-    <form action="" @submit.prevent="submit">
-      <q-field class="q-pa-lg shadow-1 q-ma-lg">
-        <q-select
-            v-model="repo" :options="repoOptions"
-            stack-label="Repository"
-            color="tertiary"
-            required
-        />
-      </q-field>
 
-      <q-field helper="Descriptive - Bug must be understood without opening the issue!"
-               class="q-pa-lg shadow-1 q-ma-lg">
-        <q-input v-model="title"
-                 placeholder="E.g. QInput doesn't show placeholder in electron on windows 8"
-                 float-label="Title"
-                 prefix="[Bug]"/>
-      </q-field>
+  <div>
 
-      <q-field helper="Write a list if possible." class="q-pa-lg shadow-1 q-ma-lg">
-        <q-input
-            v-model="reproductionSteps"
-            type="textarea"
-            float-label="Steps to reproduce"
-            :placeholder="'1. ...\n2. ...'"
-            rows="2"
-            required
-        />
-      </q-field>
+    <q-field helper="Write a list if possible.">
+      <q-input
+          v-model="reproductionSteps"
+          type="textarea"
+          float-label="Steps to reproduce"
+          :placeholder="'1. ...\n2. ...'"
+          rows="2"
+          required
+      />
+    </q-field>
+    <div class="row">
 
-      <q-field helper="What should happen?" class="q-pa-lg shadow-1 q-ma-lg">
+      <q-field helper="What should happen?" class="col-6">
         <q-input
             v-model="expected"
             type="textarea"
@@ -40,7 +24,7 @@
         />
       </q-field>
 
-      <q-field helper="What actually happens?" class="q-pa-lg shadow-1 q-ma-lg">
+      <q-field helper="What actually happens?" class="col-6">
         <q-input
             v-model="actual"
             type="textarea"
@@ -49,8 +33,19 @@
             required
         />
       </q-field>
+    </div>
+    <div class="row">
 
-      <q-field helper="JsFiddle, Codepen or simple project repo." class="q-pa-lg shadow-1 q-ma-lg">
+      <q-field class="col-6">
+        <q-input
+            v-model="version"
+            type="url"
+            float-label="Version"
+            placeholder="0.17.9"
+        />
+      </q-field>
+
+      <q-field class="col-6" helper="JsFiddle, Codepen or simple project repo.">
         <q-input
             v-model="reproductionLink"
             type="url"
@@ -58,43 +53,35 @@
             placeholder="Url..."
         />
       </q-field>
-      <q-field helper="Tip: run 'quasar info' and paste the result here" class="q-pa-lg shadow-1 q-ma-lg">
-        <q-input
-            v-model="quasarInfo"
-            type="textarea"
-            float-label="Technical info"
-            placeholder="Quasar v0.17.3, Win 95, ..."
-            required
-            rows="2"
-        />
-      </q-field>
+    </div>
 
-      <q-btn type="submit" @submit.prevent="submit" class="float-right q-ma-lg">
-        Create
-      </q-btn>
-    </form>
-  </q-page>
+    <q-field class="col-6" helper="Tip: run 'quasar info' and paste the result here">
+      <q-input
+          v-model="quasarInfo"
+          type="textarea"
+          float-label="Technical info"
+          placeholder="Quasar v0.17.3, Win 95, ..."
+          required
+          rows="2"
+      />
+    </q-field>
+
+  </div>
 </template>
 
 <script>
-import { repos } from '../config'
-import openGithubIssue from '../utils/open-github-issue'
-
-const repoOptions = repos.map(repo => {
-  return {label: repo.name, value: repo.id}
-})
 
 export default {
   name: 'BugReport',
+  components: {},
   data () {
     return {
       title: '',
       reproductionSteps: '',
       expected: '',
       actual: '',
+      version: '',
       quasarInfo: '',
-      repoOptions: repoOptions,
-      repo: repoOptions[0].value,
       reproductionLink: ''
     }
   },
@@ -118,10 +105,8 @@ ${this.reproductionLink}` : ''}
 ${this.quasarInfo}
 \`\`\`
 `
-    },
-    submit () {
-      openGithubIssue(this.buildTitle(), this.buildBody(), this.repo)
     }
+
   }
 }
 </script>
