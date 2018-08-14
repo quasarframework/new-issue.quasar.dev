@@ -40,7 +40,7 @@
         <q-input
             v-model="version"
             type="url"
-            float-label="Version"
+            :float-label="`${repo.name} Version`"
             placeholder="0.17.9"
         />
       </q-field>
@@ -73,7 +73,12 @@
 
 export default {
   name: 'BugReport',
-  components: {},
+  props: {
+    repo: {
+      type: Object,
+      default: () => ({name: ''})
+    }
+  },
   data () {
     return {
       title: '',

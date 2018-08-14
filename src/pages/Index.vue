@@ -20,14 +20,12 @@
         </q-field>
       </div>
 
-      <q-field helper="Descriptive - Bug must be understood without opening the issue!"
-               class="">
+      <q-field helper="Descriptive - Must be understood without opening the issue!">
         <q-input v-model="title"
-                 placeholder="E.g. QInput doesn't show placeholder in electron on windows 8"
                  float-label="Title"
                  :prefix="prefix"/>
       </q-field>
-      <component :is="formComponent" ref="formComponent"></component>
+      <component :is="formComponent" ref="formComponent" :repo="repo"></component>
 
       <q-btn type="submit" @submit.prevent="submit" class="float-right q-ma-lg">
         Create
@@ -42,7 +40,7 @@ import FeatureRequest from './FeatureRequest'
 import openGithubIssue from '../utils/open-github-issue'
 
 const repoOptions = repos.map(repo => {
-  return {label: repo.name, value: repo.id}
+  return {label: repo.name, value: repo}
 })
 export default {
   components: {
@@ -79,7 +77,7 @@ export default {
       return this.$refs.formComponent.buildBody()
     },
     submit () {
-      openGithubIssue(this.buildTitle(), this.buildBody(), this.repo)
+      openGithubIssue(this.buildTitle(), this.buildBody(), this.repo.id)
     }
   }
 }
