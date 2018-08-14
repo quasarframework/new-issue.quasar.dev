@@ -55,7 +55,7 @@
           />
         </q-field>
         <p class="q-headline">Templates</p>
-        <p>You can fork one of these.</p>
+        <p>You can fork and edit one of these.</p>
         <ul>
           <li><a href="https://jsfiddle.net/rstoenescu/waugrryy/"> jsFiddle - Material theme</a></li>
           <li><a href="https://jsfiddle.net/rstoenescu/7gu065yg//"> jsFiddle - iOS theme</a></li>

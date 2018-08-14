@@ -1,6 +1,27 @@
 <template>
   <q-page padding>
-    <form action="" @submit.prevent="submit">
+
+    <div class="shadow-1 q-pa-sm">
+      <strong class="q-headline">Issue list is reserved exclusively for bug reports and feature requests.</strong>
+
+      <p>
+        <strong>
+          Get help:
+        </strong>
+        <q-btn icon="fab fa-discord"
+               class="q-ma-md"
+               label="Ask on Discord chat"
+               @click="openURL('https://discord.gg/5TDhbDg')"/>
+
+        <q-btn icon="fa fa-comments"
+               class="q-ma-md"
+               label="Ask on Forums"
+               @click="openURL('http://forum.quasar-framework.org/')"/>
+      </p>
+
+    </div>
+
+    <form class="q-mt-xl" action="" @submit.prevent="submit">
       <div class="row">
         <q-field class="col-6">
           <q-select
