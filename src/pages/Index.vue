@@ -3,18 +3,23 @@
 
     <div class="shadow-1 q-pa-sm">
       <strong class="q-headline">Issue list is reserved exclusively for bug reports and feature requests.</strong>
+      <p>
+        Any usage questions will be closed immediately
+      </p>
 
       <p>
         <strong>
-          Get help:
+          To get help:
         </strong>
         <q-btn icon="fab fa-discord"
                class="q-ma-md"
+               flat
                label="Ask on Discord chat"
                @click="openURL('https://discord.gg/5TDhbDg')"/>
 
         <q-btn icon="fa fa-comments"
                class="q-ma-md"
+               flat
                label="Ask on Forums"
                @click="openURL('http://forum.quasar-framework.org/')"/>
       </p>

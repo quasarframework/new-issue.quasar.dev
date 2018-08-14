@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-field helper="How would developers use this feature?">
+    <q-field helper="How EXACTLY would developers use this feature?">
       <q-input
           v-model="form.api"
           type="textarea"
@@ -10,17 +10,24 @@
           :rows="2"
       />
     </q-field>
-    <q-field>
+    <q-field class="q-mt-lg">
       <q-input
           v-model="form.problem"
           type="textarea"
           required
           float-label="Reason add it?"
-          placeholder="Convince us..."
+          placeholder=" You can use markdown to format lists and code."
           :rows="2"
       />
+
     </q-field>
-    <q-field>
+    <div class="caption">
+      What this feature means for your product?
+      What will it allow you to do that you can't do today?
+      How will it make current workarounds straightforward?
+      What potential bugs and edge cases does it help to avoid?
+    </div>
+    <q-field class="q-mt-xl" helper="Are you willing to implement this feature?">
       <q-checkbox v-model="form.canImplement" label="I can implement this."/>
     </q-field>
 
