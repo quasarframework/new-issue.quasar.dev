@@ -14,9 +14,7 @@
           <q-btn-toggle
               v-model="type"
               toggle-color="primary"
-              :options="issueTypes">
-
-          </q-btn-toggle>
+              :options="issueTypes"/>
         </q-field>
       </div>
 
@@ -25,7 +23,7 @@
                  float-label="Title"
                  :prefix="prefix"/>
       </q-field>
-      <component :is="formComponent" ref="formComponent" :repo="repo"></component>
+      <component :is="formComponent" ref="formComponent" :repo="repo"/>
 
       <q-btn type="submit" @submit.prevent="submit" class="float-right q-ma-lg">
         Create
