@@ -67,8 +67,6 @@
           <li><a href="https://jsfiddle.net/rstoenescu/7gu065yg//"> jsFiddle - iOS theme</a></li>
           <li><a href="https://codepen.io/rstoenescu/pen/KQRZJg">Codepen - Material theme</a></li>
           <li><a href="https://codepen.io/rstoenescu/pen/paVpBN">Codepen - iOS theme</a></li>
-          <li>What about to add link to quasar starter kit repo here?</li>
-          <li> Or codesandbox but the one I know doesnt follow quasar structure exactly</li>
         </ul>
       </div>
     </div>
