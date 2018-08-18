@@ -66,7 +66,8 @@ module.exports = function (ctx) {
         'QSelect',
         'QSlideTransition',
         'QCheckbox',
-        'QBtnToggle'
+        'QBtnToggle',
+        'QAutocomplete'
       ],
       directives: [
         'Ripple'

@@ -38,11 +38,17 @@
 
       <q-field class="col-6">
         <q-input
+            @focus="fetchVersions"
             v-model="version"
-            type="url"
-            :float-label="`${repo.name} Version`"
-            placeholder="0.17.9"
-        />
+            type="text"
+            :float-label="`${repo.name} Version`">
+
+          <q-autocomplete :static-data="versions"
+                          :min-characters="0"
+                          value-field="version">
+
+          </q-autocomplete>
+        </q-input>
       </q-field>
 
       <div class="col-6">
@@ -99,7 +105,13 @@ export default {
       actual: '',
       version: '',
       quasarInfo: '',
-      reproductionLink: ''
+      reproductionLink: '',
+      versions: {
+        // Property name that will be used by filter() to filter the array of objects below.
+        field: 'version',
+
+        list: []
+      }
     }
   },
   methods: {
@@ -122,8 +134,31 @@ ${this.reproductionLink}` : ''}
 ${this.quasarInfo}
 \`\`\`
 `
+    },
+    fetchVersions () {
+      this.$axios.get(`https://api.github.com/repos/${this.repo.id}/releases`)
+        .then(({data}) => {
+          // eslint-disable-next-line camelcase
+          this.versions.list = data.map(({tag_name}) => {
+            let v = tag_name.substr(1)
+            return {
+              version: v,
+              label: v
+            }
+          })
+        })
     }
-
+  },
+  watch: {
+    repo: {
+      immediate: true,
+      handler () {
+        this.versions.list = []
+        this.version = ''
+        this.fetchVersions()
+      }
+    }
   }
+
 }
 </script>
