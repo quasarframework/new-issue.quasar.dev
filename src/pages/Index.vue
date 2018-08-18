@@ -59,8 +59,8 @@
 </template>
 <script>
 import { issueTypeForms, issueTypes, repos } from '../config'
-import BugReport from './BugReport'
-import FeatureRequest from './FeatureRequest'
+import BugReport from '../components/BugReport'
+import FeatureRequest from '../components/FeatureRequest'
 import openGithubIssue from '../utils/open-github-issue'
 
 const repoOptions = repos.map(repo => {
