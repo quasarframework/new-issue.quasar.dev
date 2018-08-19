@@ -1,6 +1,14 @@
 const issueTypes = [
-  { label: 'Bug report', value: 'bug' },
-  { label: 'Feature request', value: 'request' }
+  {
+    id: 'bug',
+    name: 'Bug Report',
+    prefix: '[Bug]'
+  },
+  {
+    id: 'request',
+    name: 'Feature Request',
+    prefix: '[Request]'
+  }
 ]
 
 export { issueTypes }
