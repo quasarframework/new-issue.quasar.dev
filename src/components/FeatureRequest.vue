@@ -2,7 +2,7 @@
   <div>
     <q-field helper="How EXACTLY would developers use this feature?">
       <q-input
-          v-model="form.api"
+          v-model.trim="form.api"
           type="textarea"
           float-label="Propose API"
           required
@@ -12,7 +12,7 @@
     </q-field>
     <q-field class="q-mt-lg">
       <q-input
-          v-model="form.problem"
+          v-model.trim="form.problem"
           type="textarea"
           required
           float-label="Reason add it?"

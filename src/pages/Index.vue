@@ -45,16 +45,32 @@
       </div>
 
       <q-field helper="Descriptive - Must be understood without opening the issue!">
-        <q-input v-model="title"
+        <q-input v-model.trim="title"
                  float-label="Title"
                  :prefix="prefix"/>
       </q-field>
       <component :is="formComponent" ref="formComponent" :repo="repo"/>
 
+      <q-btn @click="updatePreview" class="float-right q-ma-lg">
+        Preview
+      </q-btn>
       <q-btn type="submit" @submit.prevent="submit" class="float-right q-ma-lg">
         Create
       </q-btn>
     </form>
+    <q-modal v-model="showPreview" v-close-overlay content-classes="q-pa-md round-borders">
+      <div>
+        <div v-html="preview" class="preview">
+
+        </div>
+        <form action="" @submit.prevent="submit">
+          <q-btn type="submit" @submit.prevent="submit" class="float-right">
+            Create
+          </q-btn>
+        </form>
+
+      </div>
+    </q-modal>
   </q-page>
 </template>
 <script>
@@ -62,6 +78,7 @@ import { issueTypeForms, issueTypes, repos } from '../config'
 import BugReport from '../components/BugReport'
 import FeatureRequest from '../components/FeatureRequest'
 import openGithubIssue from '../utils/open-github-issue'
+import createPreview from '../utils/create-preview'
 
 const repoOptions = repos.map(repo => {
   return {label: repo.name, value: repo}
@@ -82,7 +99,9 @@ export default {
       )),
       type: issueTypes[0],
       repoOptions: repoOptions,
-      repo: repoOptions[0].value
+      repo: repoOptions[0].value,
+      preview: '',
+      showPreview: false
     }
   },
   computed: {
@@ -94,6 +113,10 @@ export default {
     }
   },
   methods: {
+    updatePreview () {
+      this.preview = createPreview(this.buildBody())
+      this.showPreview = true
+    },
     buildTitle () {
       return `${this.prefix} ${this.title}`
     },
@@ -107,3 +130,11 @@ export default {
 }
 
 </script>
+
+<style>
+  .preview h4 {
+    font-size: x-large;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+</style>

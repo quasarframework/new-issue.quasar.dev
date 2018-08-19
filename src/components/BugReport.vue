@@ -4,7 +4,7 @@
 
     <q-field helper="Describe steps needed to make this bug happen. We need to reproduce the bug to fix it.">
       <q-input
-          v-model="reproductionSteps"
+          v-model.trim="reproductionSteps"
           type="textarea"
           float-label="Steps to reproduce"
           :placeholder="'1. ...\n2. ...'"
@@ -16,7 +16,7 @@
 
       <q-field helper="What should happen?" class="col-6">
         <q-input
-            v-model="expected"
+            v-model.trim="expected"
             type="textarea"
             float-label="Expected behaviour"
             color="primary"
@@ -26,7 +26,7 @@
 
       <q-field helper="What actually happens?" class="col-6">
         <q-input
-            v-model="actual"
+            v-model.trim="actual"
             type="textarea"
             float-label="Actual behaviour"
             color="primary"
@@ -39,7 +39,7 @@
       <q-field class="col-6">
         <q-input
             @focus="fetchVersions"
-            v-model="version"
+            v-model.trim="version"
             type="text"
             :float-label="`${repo.name} Version`">
 
@@ -54,7 +54,7 @@
       <div class="col-6">
         <q-field helper="JsFiddle, Codepen or simple project repo.">
           <q-input
-              v-model="reproductionLink"
+              v-model.trim="reproductionLink"
               type="url"
               float-label="Minimal Reproduction"
               placeholder="Url..."
@@ -73,7 +73,7 @@
 
     <q-field class="col-6" helper="Tip: run 'quasar info' and paste the result here">
       <q-input
-          v-model="quasarInfo"
+          v-model.trim="quasarInfo"
           type="textarea"
           float-label="System info"
           placeholder="Quasar v0.17.3, Win 95, ..."
@@ -119,14 +119,15 @@ export default {
     buildBody () {
       return `#### Steps
 ${this.reproductionSteps}
+
 #### Expected
 ${this.expected}
+
 #### Actual
 ${this.actual}
-
-${this.reproductionLink ? `#### Reproduction link
-${this.reproductionLink}` : ''}
-
+${this.reproductionLink ? `
+#### Reproduction link
+${this.reproductionLink}` : ``}
 #### Info
 \`\`\`
 ${this.quasarInfo}
