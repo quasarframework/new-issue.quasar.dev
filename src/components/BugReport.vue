@@ -50,22 +50,27 @@
     </div>
     <div class="row gutter-sm q-my-sm">
 
-      <q-field class="col-6">
-        <q-input
-            @focus="fetchVersions"
-            v-model.trim="version"
-            type="text"
-            :float-label="`${repo.name} Version`">
+      <div class="col-6">
+        <q-field>
+          <q-input
+              @focus="fetchVersions"
+              v-model.trim="version"
+              type="text"
+              :float-label="`${repo.name} Version`">
 
-          <q-autocomplete :static-data="versions"
-                          :min-characters="0"
-                          :max-results="100"
-                          max-height="15em"
-                          value-field="version">
+            <q-autocomplete :static-data="versions"
+                            :min-characters="0"
+                            :max-results="100"
+                            max-height="15em"
+                            value-field="version">
 
-          </q-autocomplete>
-        </q-input>
-      </q-field>
+            </q-autocomplete>
+          </q-input>
+        </q-field>
+        <div class="q-caption q-mt-sm text-grey-6">
+          Check if the issue isn't already resolved in next version or in dev branch.
+        </div>
+      </div>
 
       <div class="col-6">
         <q-field helper="JsFiddle, Codepen or minimal project repo.">
@@ -76,8 +81,14 @@
               placeholder="Url..."
           />
         </q-field>
-        <div class="q-mt-sm q-caption text-grey-6">
-          <p>You can fork and edit one of these.</p>
+        <div class="q-mt-md q-caption text-grey-6">
+          <strong>This is important!</strong>
+          <ul>
+            <li>Issues with no reproduction may not be fixed</li>
+            <li>Reproduction speeds up the fix process a lot</li>
+            <li>Be minimal - include ONLY what is needed to make bug happen</li>
+          </ul>
+          <strong>You can fork and edit one of these.</strong>
           <ul>
             <li><a href="https://jsfiddle.net/rstoenescu/waugrryy" target="_blank" rel="noopener noreferrer">
               jsFiddle Material theme
