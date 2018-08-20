@@ -45,6 +45,8 @@
 
           <q-autocomplete :static-data="versions"
                           :min-characters="0"
+                          :max-results="100"
+                          max-height="15em"
                           value-field="version">
 
           </q-autocomplete>
