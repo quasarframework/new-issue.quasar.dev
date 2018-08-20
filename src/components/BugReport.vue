@@ -14,7 +14,7 @@
     </q-field>
     <div class="row gutter-sm q-my-sm">
 
-      <q-field helper="What should happen?" class="col-6">
+      <q-field helper="What should happen after steps above?" class="col-6">
         <q-input
             v-model.trim="expected"
             type="textarea"
@@ -33,6 +33,20 @@
             required
         />
       </q-field>
+    </div>
+    <div class="q-my-md row q-caption text-grey-6">
+      <div class="col-6">
+        <ul>
+          <li>Don't write generic phrases like 'It doesn't work'!</li>
+          <li>Write EXACTLY what happens</li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <ul>
+          <li>Don't write generic phrases like 'It should work'</li>
+          <li>Write EXACTLY what should happen</li>
+        </ul>
+      </div>
     </div>
     <div class="row gutter-sm q-my-sm">
 
@@ -54,7 +68,7 @@
       </q-field>
 
       <div class="col-6">
-        <q-field helper="JsFiddle, Codepen or simple project repo.">
+        <q-field helper="JsFiddle, Codepen or minimal project repo.">
           <q-input
               v-model.trim="reproductionLink"
               type="url"
@@ -82,12 +96,12 @@
       </div>
     </div>
 
-    <q-field class="col-6" helper="Tip: run 'quasar info' and paste the result here">
+    <q-field class="col-6" helper="Tip: In CLI based project you can run 'quasar info' and paste the result here">
       <q-input
           v-model.trim="quasarInfo"
           type="textarea"
           float-label="System info"
-          placeholder="Quasar v0.17.3, Win 95, ..."
+          placeholder="Win 95, Firefox 11, ..."
           required
           rows="2"
       />
