@@ -4,7 +4,7 @@
       <q-toolbar color="primary">
         <q-toolbar-title class="row items-center group">
           <img src="~assets/quasar-logo.svg" alt="Quasar Framework Logo" width="50px" height="50px">
-          <span>Issue Helper</span>
+          <span>New Issue Helper</span>
         </q-toolbar-title>
 
         <q-btn flat @click="openExternal('http://quasar-framework.org/guide/')">

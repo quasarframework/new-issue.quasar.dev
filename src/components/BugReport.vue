@@ -12,7 +12,7 @@
           required
       />
     </q-field>
-    <div class="row">
+    <div class="row gutter-sm q-my-sm">
 
       <q-field helper="What should happen?" class="col-6">
         <q-input
@@ -34,7 +34,7 @@
         />
       </q-field>
     </div>
-    <div class="row">
+    <div class="row gutter-sm q-my-sm">
 
       <q-field class="col-6">
         <q-input
@@ -60,14 +60,24 @@
               placeholder="Url..."
           />
         </q-field>
-        <p class="q-headline">Templates</p>
-        <p>You can fork and edit one of these.</p>
-        <ul>
-          <li><a href="https://jsfiddle.net/rstoenescu/waugrryy/"> jsFiddle - Material theme</a></li>
-          <li><a href="https://jsfiddle.net/rstoenescu/7gu065yg//"> jsFiddle - iOS theme</a></li>
-          <li><a href="https://codepen.io/rstoenescu/pen/KQRZJg">Codepen - Material theme</a></li>
-          <li><a href="https://codepen.io/rstoenescu/pen/paVpBN">Codepen - iOS theme</a></li>
-        </ul>
+        <div class=" q-mt-sm text-grey-6">Templates</div>
+        <div class="q-caption text-grey-6">
+          <p>You can fork and edit one of these.</p>
+          <ul>
+            <li><a href="https://jsfiddle.net/rstoenescu/waugrryy" target="_blank" rel="noopener noreferrer">
+              jsFiddle Material theme
+            </a></li>
+            <li><a href="https://jsfiddle.net/rstoenescu/7gu065yg" target="_blank" rel="noopener noreferrer">
+              jsFiddle iOS theme
+            </a></li>
+            <li><a href="https://codepen.io/rstoenescu/pen/KQRZJg" target="_blank" rel="noopener noreferrer">
+              Codepen - Material theme
+            </a></li>
+            <li><a href="https://codepen.io/rstoenescu/pen/paVpBN" target="_blank" rel="noopener noreferrer">
+              Codepen - iOS theme
+            </a></li>
+          </ul>
+        </div>
       </div>
     </div>
 
