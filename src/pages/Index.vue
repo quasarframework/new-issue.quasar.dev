@@ -127,6 +127,25 @@ export default {
     submit () {
       openGithubIssue(this.buildTitle(), this.buildBody(), this.repo.id)
     }
+  },
+  created () {
+    // if the repo is written in url params, set it as initial option for repo selection
+    let repoParam = this.$route.params.repo
+    if (repoParam) {
+      let ownerParam = this.$route.params.owner
+
+      let fullRepoName
+      if (ownerParam) {
+        fullRepoName = `${ownerParam}/${repoParam}`
+      } else {
+        fullRepoName = repoParam
+      }
+
+      let repoOption = repoOptions.find(option => option.value.id === fullRepoName)
+      if (repoOption) {
+        this.repo = repoOption.value
+      }
+    }
   }
 }
 

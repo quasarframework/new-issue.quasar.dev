@@ -5,7 +5,17 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('pages/Index.vue')
+        component: () => import('pages/Index.vue'),
+        children: [
+          {
+            path: ':owner/:repo',
+            props: true
+          },
+          {
+            path: ':repo',
+            props: true
+          }
+        ]
       }
     ]
   }
