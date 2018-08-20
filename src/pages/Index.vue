@@ -2,8 +2,8 @@
   <q-page padding class="row justify-center">
 
     <div class="col col-lg-8 col-md-10">
-      <div class="shadow-1 q-pa-md">
-        <strong class="q-headline">Issue list is reserved exclusively for bug reports and feature requests.</strong>
+      <div class="shadow-1 q-pa-sm">
+        <strong>Issue list is reserved exclusively for bug reports and feature requests.</strong>
         <div>
           Any usage questions will be closed immediately
         </div>
@@ -13,20 +13,18 @@
             To get help:
           </strong>
           <q-btn icon="fab fa-discord"
-                 class="q-ma-md"
+                 class="q-ma-sm"
                  flat
                  label="Ask on Discord chat"
                  @click="openURL('https://discord.gg/5TDhbDg')"/>
 
           <q-btn icon="fa fa-comments"
-                 class="q-ma-md"
+                 class="q-ma-sm"
                  flat
                  label="Ask on Forums"
                  @click="openURL('http://forum.quasar-framework.org/')"/>
         </div>
-
       </div>
-
       <form class="q-mt-md" action="" @submit.prevent="submit">
         <div class="row items-center q-my-sm">
           <q-field class="col-6">
