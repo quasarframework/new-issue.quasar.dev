@@ -51,25 +51,24 @@
                    :prefix="prefix"/>
         </q-field>
         <component :is="formComponent" ref="formComponent" :repo="repo" class="q-my-sm"/>
+        <div class="float-right q-ma-lg">
 
-        <q-btn @click="updatePreview" class="float-right q-ma-lg">
-          Preview
-        </q-btn>
-        <q-btn type="submit" @submit.prevent="submit" class="float-right q-ma-lg">
-          Create
-        </q-btn>
+          <q-btn @click="updatePreview">
+            Preview
+          </q-btn>
+          <q-btn class="on-right" type="submit" @submit.prevent="submit" color="primary">
+            Post
+          </q-btn>
+        </div>
       </form>
-      <q-modal v-model="showPreview" v-close-overlay content-classes="q-pa-md round-borders">
+      <q-modal v-model="showPreview" content-classes="q-pa-md round-borders">
         <div>
           <div v-html="preview" class="preview">
 
           </div>
-          <form action="" @submit.prevent="submit">
-            <q-btn type="submit" @submit.prevent="submit" class="float-right">
-              Create
-            </q-btn>
-          </form>
-
+          <q-btn v-close-overlay class="float-right">
+            Close
+          </q-btn>
         </div>
       </q-modal>
     </div>

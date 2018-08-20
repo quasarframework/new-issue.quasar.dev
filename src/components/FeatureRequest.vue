@@ -4,21 +4,19 @@
       <q-input
           v-model.trim="form.api"
           type="textarea"
-          float-label="Propose API"
+          float-label="How the API should look like?"
           required
           placeholder="E.g. <new-component :new-prop /> ..."
           :rows="2"
       />
     </q-field>
-    <q-field class="q-mt-lg">
+    <q-field class="q-mt-lg text-right" helper="Note: You can use markdown to format lists and code.">
       <q-input
           v-model.trim="form.problem"
           type="textarea"
           required
           float-label="Reason add it?"
-          placeholder=" You can use markdown to format lists and code."
-          :rows="2"
-      />
+          :rows="2"/>
 
     </q-field>
     <div class="q-caption text-grey-6">

@@ -60,8 +60,7 @@
               placeholder="Url..."
           />
         </q-field>
-        <div class=" q-mt-sm text-grey-6">Templates</div>
-        <div class="q-caption text-grey-6">
+        <div class="q-mt-sm q-caption text-grey-6">
           <p>You can fork and edit one of these.</p>
           <ul>
             <li><a href="https://jsfiddle.net/rstoenescu/waugrryy" target="_blank" rel="noopener noreferrer">
