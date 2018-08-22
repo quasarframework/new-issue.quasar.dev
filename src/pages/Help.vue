@@ -8,13 +8,13 @@
     </p>
     <q-btn icon="fab fa-discord"
            class="q-ma-md"
-           label="Ask on Discord chat"
+           label="Chat on Discord"
            @click="openURL('https://discord.gg/5TDhbDg')"/>
 
     <q-btn icon="fa fa-comments"
            class="q-ma-md"
-           label="Ask on Forums"
-           @click="openURL('http://forum.quasar-framework.org/')"/>
+           label="Ask the Forum"
+           @click="openURL('https://forum.quasar-framework.org/')"/>
   </q-page>
 </template>
 
