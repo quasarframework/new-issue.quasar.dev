@@ -2,7 +2,7 @@
 
   <div>
 
-    <q-field helper="Describe steps needed to make this bug happen. We need to reproduce the bug to fix it.">
+    <q-field helper="Describe the steps needed to reproduce your issue. If we cannot, your issue will be closed.">
       <q-input
           v-model.trim="reproductionSteps"
           type="textarea"
@@ -14,7 +14,7 @@
     </q-field>
     <div class="row gutter-sm q-my-sm">
 
-      <q-field helper="What should happen after steps above?" class="col-6">
+      <q-field helper="What did you expect to happen after doing the above?" class="col-6">
         <q-input
             v-model.trim="expected"
             type="textarea"
@@ -38,13 +38,13 @@
       <div class="col-6">
         <ul>
           <li>Don't write generic phrases like 'It doesn't work'!</li>
-          <li>Write EXACTLY what happens</li>
+          <li>Write EXACTLY what happens.</li>
         </ul>
       </div>
       <div class="col-6">
         <ul>
-          <li>Don't write generic phrases like 'It should work'</li>
-          <li>Write EXACTLY what should happen</li>
+          <li>Don't write generic phrases like 'It should work'.</li>
+          <li>Write EXACTLY what should happen.</li>
         </ul>
       </div>
     </div>
@@ -68,7 +68,7 @@
           </q-input>
         </q-field>
         <div class="q-caption q-mt-sm text-grey-6">
-          Check if the issue isn't already resolved in next version or in dev branch.
+          Please have a look to see if the issue hasn't already been resolved in the latest version or in dev branch.
         </div>
       </div>
 
@@ -82,10 +82,10 @@
           />
         </q-field>
         <div class="q-mt-md q-caption text-grey-6">
-          <strong>This is important!</strong>
+          <strong>Important!</strong>
           <ul>
-            <li>Issues with no reproduction may not be fixed</li>
-            <li>Reproduction speeds up the fix process a lot</li>
+            <li>Bug reports that we cannot reproduce cannot be fixed.</li>
+            <li>Giving us reproduction steps speeds up the fix process.</li>
             <li>Be minimal - include ONLY what is needed to make bug happen</li>
           </ul>
           <strong>You can fork and edit one of these.</strong>
@@ -107,7 +107,7 @@
       </div>
     </div>
 
-    <q-field class="col-6" helper="Tip: In CLI based project you can run 'quasar info' and paste the result here">
+    <q-field class="col-6" helper="Tip: In a Quasar-CLI based project you can run 'quasar info' and paste the result here">
       <q-input
           v-model.trim="quasarInfo"
           type="textarea"
