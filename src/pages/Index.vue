@@ -3,9 +3,9 @@
 
     <div class="col col-lg-8 col-md-10">
       <div class="shadow-1 q-pa-sm">
-        <strong>Issue list is reserved exclusively for bug reports and feature requests.</strong>
+        <strong>The Quasar Framework issue tracker is reserved exclusively for bug reports and feature requests.</strong>
         <div>
-          Any usage questions will be closed immediately
+          Any questions about usage will be closed immediately.
         </div>
 
         <div>
@@ -15,13 +15,13 @@
           <q-btn icon="fab fa-discord"
                  class="q-ma-sm"
                  flat
-                 label="Ask on Discord chat"
+                 label="Chat on Discord"
                  @click="openURL('https://discord.gg/5TDhbDg')"/>
 
           <q-btn icon="fa fa-comments"
                  class="q-ma-sm"
                  flat
-                 label="Ask on Forums"
+                 label="Ask the Forum"
                  @click="openURL('http://forum.quasar-framework.org/')"/>
         </div>
       </div>
@@ -43,7 +43,7 @@
           </q-field>
         </div>
 
-        <q-field helper="Descriptive - Must be understood without opening the issue!" class="q-my-sm">
+        <q-field helper="Descriptive - We must understand you without opening the issue!" class="q-my-sm">
           <q-input v-model.trim="title"
                    float-label="Title"
                    :prefix="prefix"/>
