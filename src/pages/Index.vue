@@ -22,7 +22,7 @@
                  class="q-ma-sm"
                  flat
                  label="Ask the Forum"
-                 @click="openURL('http://forum.quasar-framework.org/')"/>
+                 @click="openURL('https://forum.quasar-framework.org/')"/>
         </div>
       </div>
       <form class="q-mt-md" action="" @submit.prevent="submit">
