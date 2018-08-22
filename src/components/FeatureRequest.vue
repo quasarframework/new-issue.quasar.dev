@@ -4,7 +4,7 @@
       <q-input
           v-model.trim="form.api"
           type="textarea"
-          float-label="How the API should look like?"
+          float-label="Usage"
           required
           placeholder="E.g. <new-component :new-prop /> ..."
           :rows="2"
@@ -15,7 +15,7 @@
           v-model.trim="form.problem"
           type="textarea"
           required
-          float-label="Reason add it?"
+          float-label="Reason for adding?"
           :rows="2"/>
 
     </q-field>
