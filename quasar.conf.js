@@ -67,10 +67,12 @@ module.exports = function (ctx) {
         'QSlideTransition',
         'QCheckbox',
         'QBtnToggle',
-        'QAutocomplete'
+        'QAutocomplete',
+        'QModal'
       ],
       directives: [
-        'Ripple'
+        'Ripple',
+        'CloseOverlay'
       ],
       // Quasar plugins
       plugins: [
