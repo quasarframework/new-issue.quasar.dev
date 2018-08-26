@@ -3,8 +3,8 @@
   <div>
 
     <q-field helper="Describe the steps needed to reproduce your issue. If we cannot, your issue will be closed.">
-      <q-input
-          v-model.trim="reproductionSteps"
+      <image-aware-input
+          v-model="reproductionSteps"
           type="textarea"
           float-label="Steps to reproduce"
           :placeholder="'1. ...\n2. ...'"
@@ -15,8 +15,8 @@
     <div class="row gutter-sm q-my-sm">
 
       <q-field helper="What did you expect to happen after doing the above?" class="col-xs-12 col-sm-6">
-        <q-input
-            v-model.trim="expected"
+        <image-aware-input
+            v-model="expected"
             type="textarea"
             float-label="Expected behaviour"
             color="primary"
@@ -25,12 +25,13 @@
       </q-field>
 
       <q-field helper="What actually happens?" class="col-xs-12 col-sm-6">
-        <q-input
-            v-model.trim="actual"
+        <image-aware-input
+            v-model="actual"
             type="textarea"
             float-label="Actual behaviour"
             color="primary"
             required
+
         />
       </q-field>
     </div>
@@ -107,9 +108,10 @@
       </div>
     </div>
 
-    <q-field class="col-xs-12 col-sm-6" helper="Tip: In a Quasar-CLI based project you can run 'quasar info' and paste the result here">
+    <q-field class="col-xs-12 col-sm-6"
+             helper="Tip: In a Quasar-CLI based project you can run 'quasar info' and paste the result here">
       <q-input
-          v-model.trim="quasarInfo"
+          v-model="quasarInfo"
           type="textarea"
           float-label="System info"
           placeholder="Win 95, Firefox 11, ..."
@@ -122,9 +124,11 @@
 </template>
 
 <script>
+import ImageAwareInput from './ImageAwareInput'
 
 export default {
   name: 'BugReport',
+  components: {ImageAwareInput},
   props: {
     repo: {
       type: Object,

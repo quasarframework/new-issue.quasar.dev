@@ -162,4 +162,9 @@ export default {
     margin-top: 5px;
     margin-bottom: 0;
   }
+
+  .preview img {
+    max-height: 100vh;
+    max-width: 50vw;
+  }
 </style>
