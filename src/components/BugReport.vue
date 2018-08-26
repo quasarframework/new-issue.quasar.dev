@@ -58,7 +58,13 @@
               v-model.trim="version"
               type="text"
               :float-label="`${repo.name} Version`">
+            <!--
+            There is a reason why this field is not plain Select but Input with Autocomplete
+           As noted on original Vue new issue repo, Github API seems to sometimes not catching up so fast and new version is missing
 
+            Also user might be using some beta version which is not listed on Github
+            or the maintainer didn't put release tag on Github
+            -->
             <q-autocomplete :static-data="versions"
                             :min-characters="0"
                             :max-results="100"
