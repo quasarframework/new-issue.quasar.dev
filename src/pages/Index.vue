@@ -55,7 +55,11 @@
                    float-label="Title"
                    :prefix="prefix"/>
         </q-field>
-        <component :is="formComponent" ref="formComponent" :repo="repo" class="q-my-sm"/>
+        <div class="q-caption text-right q-mt-lg text-grey-6">
+          Note: You can use markdown to format lists and code. <br>
+          Paste a link to add a screenshot
+        </div>
+        <component :is="formComponent" ref="formComponent" :repo="repo" class=""/>
         <div class="float-right q-ma-lg">
 
           <q-btn @click="updatePreview">

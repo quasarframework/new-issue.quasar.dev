@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-field helper="How EXACTLY would developers use this feature?" class="q-mt-lg">
+    <q-field helper="How EXACTLY would developers use this feature?">
       <image-aware-input
           v-model="form.api"
           type="textarea"
@@ -10,7 +10,7 @@
           :rows="2"
       />
     </q-field>
-    <q-field class="q-mt-lg text-right" helper="Note: You can use markdown to format lists and code.">
+    <q-field class="q-mt-lg text-right">
       <image-aware-input
           v-model="form.problem"
           type="textarea"
