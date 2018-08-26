@@ -178,7 +178,6 @@ ${this.quasarInfo}
       this.versions.list = []
       this.$axios.get(`https://api.github.com/repos/${this.repo.id}/releases?per_page=100`)
         .then(({data}) => {
-
           this.versions.list.push(
             // eslint-disable-next-line camelcase
             ...data.map(({tag_name}) => {
