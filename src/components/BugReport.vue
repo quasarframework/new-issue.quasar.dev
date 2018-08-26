@@ -121,7 +121,6 @@
           type="textarea"
           float-label="System info"
           placeholder="Win 95, Firefox 11, ..."
-          required
           rows="2"
       />
     </q-field>
