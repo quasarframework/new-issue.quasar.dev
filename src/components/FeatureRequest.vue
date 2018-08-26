@@ -53,7 +53,7 @@ export default {
     buildBody () {
       return '#### Usage\n' +
         this.form.api +
-        '\n#### Why?\n' +
+        '\n#### Reason?\n' +
         this.form.problem +
         (this.form.canImplement ? '\n\n#### I Can Implement it.' : '')
     }
