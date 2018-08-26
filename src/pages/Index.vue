@@ -3,7 +3,8 @@
 
     <div class="col col-lg-8 col-md-10">
       <div class="shadow-1 q-pa-sm">
-        <strong>The Quasar Framework issue tracker is reserved exclusively for bug reports and feature requests.</strong>
+        <strong>The Quasar Framework issue tracker is reserved exclusively for bug reports and feature
+          requests.</strong>
         <div>
           Any questions about usage will be closed immediately.
         </div>
@@ -16,13 +17,19 @@
                  class="q-ma-sm"
                  flat
                  label="Chat on Discord"
-                 @click="openURL('https://discord.gg/5TDhbDg')"/>
+                 type="a"
+                 href="https://discord.gg/5TDhbDg"
+                 target="_blank"
+                 rel="nofollow"/>
 
           <q-btn icon="fa fa-comments"
                  class="q-ma-sm"
                  flat
                  label="Ask the Forum"
-                 @click="openURL('https://forum.quasar-framework.org/')"/>
+                 type="a"
+                 href="https://forum.quasar-framework.org/"
+                 target="_blank"
+                 rel="nofollow"/>
         </div>
       </div>
       <form class="q-mt-md" action="" @submit.prevent="submit">
