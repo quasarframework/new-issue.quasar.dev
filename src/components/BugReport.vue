@@ -175,16 +175,19 @@ ${this.quasarInfo}
 `
     },
     fetchVersions () {
-      this.$axios.get(`https://api.github.com/repos/${this.repo.id}/releases`)
+      this.versions.list = []
+      this.$axios.get(`https://api.github.com/repos/${this.repo.id}/releases?per_page=100`)
         .then(({data}) => {
-          // eslint-disable-next-line camelcase
-          this.versions.list = data.map(({tag_name}) => {
-            let v = tag_name.substr(1)
-            return {
-              version: v,
-              label: v
-            }
-          })
+
+          this.versions.list.push(
+            // eslint-disable-next-line camelcase
+            ...data.map(({tag_name}) => {
+              let v = tag_name.substr(1)
+              return {
+                version: v,
+                label: v
+              }
+            }))
         })
     }
   },
@@ -192,7 +195,6 @@ ${this.quasarInfo}
     repo: {
       immediate: true,
       handler () {
-        this.versions.list = []
         this.version = ''
         this.fetchVersions()
       }
