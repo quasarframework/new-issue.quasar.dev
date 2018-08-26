@@ -14,7 +14,7 @@
     </q-field>
     <div class="row gutter-sm q-my-sm">
 
-      <q-field helper="What did you expect to happen after doing the above?" class="col-6">
+      <q-field helper="What did you expect to happen after doing the above?" class="col-xs-12 col-sm-6">
         <q-input
             v-model.trim="expected"
             type="textarea"
@@ -24,7 +24,7 @@
         />
       </q-field>
 
-      <q-field helper="What actually happens?" class="col-6">
+      <q-field helper="What actually happens?" class="col-xs-12 col-sm-6">
         <q-input
             v-model.trim="actual"
             type="textarea"
@@ -35,13 +35,13 @@
       </q-field>
     </div>
     <div class="q-my-md row q-caption text-grey-6">
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-6">
         <ul>
           <li>Don't write generic phrases like 'It doesn't work'!</li>
           <li>Write EXACTLY what happens.</li>
         </ul>
       </div>
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-6">
         <ul>
           <li>Don't write generic phrases like 'It should work'.</li>
           <li>Write EXACTLY what should happen.</li>
@@ -50,7 +50,7 @@
     </div>
     <div class="row gutter-sm q-my-sm">
 
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-6">
         <q-field>
           <q-input
               @focus="fetchVersions"
@@ -72,7 +72,7 @@
         </div>
       </div>
 
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-6">
         <q-field helper="JsFiddle, Codepen or minimal project repo.">
           <q-input
               v-model.trim="reproductionLink"
@@ -107,7 +107,7 @@
       </div>
     </div>
 
-    <q-field class="col-6" helper="Tip: In a Quasar-CLI based project you can run 'quasar info' and paste the result here">
+    <q-field class="col-xs-12 col-sm-6" helper="Tip: In a Quasar-CLI based project you can run 'quasar info' and paste the result here">
       <q-input
           v-model.trim="quasarInfo"
           type="textarea"

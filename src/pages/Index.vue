@@ -27,14 +27,14 @@
       </div>
       <form class="q-mt-md" action="" @submit.prevent="submit">
         <div class="row items-center q-my-sm">
-          <q-field class="col-6">
+          <q-field class="col-xs-12 col-sm-6">
             <q-select
                 v-model="repo" :options="repoOptions"
                 stack-label="Repository"
                 required
             />
           </q-field>
-          <q-field class="col-6 text-center">
+          <q-field class="col-xs-12 col-sm-6 text-center">
             <q-btn-toggle
                 class="q-ma-xs"
                 v-model="type"
