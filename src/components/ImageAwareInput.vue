@@ -1,5 +1,5 @@
 <template>
-  <q-input @paste.prevent="handlePaste" v-bind="$attrs" v-on="$listeners" :value="value" ref="input"/>
+  <q-input @paste="handlePaste" v-bind="$attrs" v-on="$listeners" :value="value" ref="input"/>
 </template>
 
 <script>
@@ -15,11 +15,11 @@ export default {
       const pasted = event.clipboardData.getData('text/plain')
 
       if (!isImageUrl(pasted)) { return }
-
+      event.preventDefault()
       let selectionStart = this.$refs.input.$refs.input.selectionStart
       let selectionEnd = this.$refs.input.$refs.input.selectionEnd
 
-      let result = `${this.value.substring(0, selectionStart)}![pasted image](${pasted})${this.value.substring(
+      let result = `${this.value.substring(0, selectionStart)}![alt-text](${pasted})${this.value.substring(
         selectionEnd)}`
       this.$emit('input', result)
     }
