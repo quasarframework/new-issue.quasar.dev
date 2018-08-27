@@ -3,8 +3,8 @@
   <div>
 
     <q-field helper="Describe the steps needed to reproduce your issue. If we cannot, your issue will be closed.">
-      <q-input
-          v-model.trim="reproductionSteps"
+      <image-aware-input
+          v-model="reproductionSteps"
           type="textarea"
           float-label="Steps to reproduce"
           :placeholder="'1. ...\n2. ...'"
@@ -14,9 +14,9 @@
     </q-field>
     <div class="row gutter-sm q-my-sm">
 
-      <q-field helper="What did you expect to happen after doing the above?" class="col-6">
-        <q-input
-            v-model.trim="expected"
+      <q-field helper="What did you expect to happen after doing the above?" class="col-xs-12 col-sm-6">
+        <image-aware-input
+            v-model="expected"
             type="textarea"
             float-label="Expected behaviour"
             color="primary"
@@ -24,24 +24,25 @@
         />
       </q-field>
 
-      <q-field helper="What actually happens?" class="col-6">
-        <q-input
-            v-model.trim="actual"
+      <q-field helper="What actually happens?" class="col-xs-12 col-sm-6">
+        <image-aware-input
+            v-model="actual"
             type="textarea"
             float-label="Actual behaviour"
             color="primary"
             required
+
         />
       </q-field>
     </div>
     <div class="q-my-md row q-caption text-grey-6">
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-6">
         <ul>
           <li>Don't write generic phrases like 'It doesn't work'!</li>
           <li>Write EXACTLY what happens.</li>
         </ul>
       </div>
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-6">
         <ul>
           <li>Don't write generic phrases like 'It should work'.</li>
           <li>Write EXACTLY what should happen.</li>
@@ -50,14 +51,20 @@
     </div>
     <div class="row gutter-sm q-my-sm">
 
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-6">
         <q-field>
           <q-input
               @focus="fetchVersions"
               v-model.trim="version"
               type="text"
               :float-label="`${repo.name} Version`">
+            <!--
+            There is a reason why this field is not plain Select but Input with Autocomplete
+           As noted on original Vue new issue repo, Github API seems to sometimes not catching up so fast and new version is missing
 
+            Also user might be using some beta version which is not listed on Github
+            or the maintainer didn't put release tag on Github
+            -->
             <q-autocomplete :static-data="versions"
                             :min-characters="0"
                             :max-results="100"
@@ -72,7 +79,7 @@
         </div>
       </div>
 
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-6">
         <q-field helper="JsFiddle, Codepen or minimal project repo.">
           <q-input
               v-model.trim="reproductionLink"
@@ -107,13 +114,13 @@
       </div>
     </div>
 
-    <q-field class="col-6" helper="Tip: In a Quasar-CLI based project you can run 'quasar info' and paste the result here">
+    <q-field class="col-xs-12 col-sm-6"
+             helper="Tip: In a Quasar-CLI based project you can run 'quasar info' and paste the result here">
       <q-input
-          v-model.trim="quasarInfo"
+          v-model="quasarInfo"
           type="textarea"
           float-label="System info"
           placeholder="Win 95, Firefox 11, ..."
-          required
           rows="2"
       />
     </q-field>
@@ -122,9 +129,11 @@
 </template>
 
 <script>
+import ImageAwareInput from './ImageAwareInput'
 
 export default {
   name: 'BugReport',
+  components: {ImageAwareInput},
   props: {
     repo: {
       type: Object,
@@ -171,16 +180,18 @@ ${this.quasarInfo}
 `
     },
     fetchVersions () {
-      this.$axios.get(`https://api.github.com/repos/${this.repo.id}/releases`)
+      this.versions.list = []
+      this.$axios.get(`https://api.github.com/repos/${this.repo.id}/releases?per_page=100`)
         .then(({data}) => {
-          // eslint-disable-next-line camelcase
-          this.versions.list = data.map(({tag_name}) => {
-            let v = tag_name.substr(1)
-            return {
-              version: v,
-              label: v
-            }
-          })
+          this.versions.list.push(
+            // eslint-disable-next-line camelcase
+            ...data.map(({tag_name}) => {
+              let v = tag_name.substr(1)
+              return {
+                version: v,
+                label: v
+              }
+            }))
         })
     }
   },
@@ -188,7 +199,6 @@ ${this.quasarInfo}
     repo: {
       immediate: true,
       handler () {
-        this.versions.list = []
         this.version = ''
         this.fetchVersions()
       }

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <q-field helper="How EXACTLY would developers use this feature?" class="q-mt-lg">
-      <q-input
-          v-model.trim="form.api"
+    <q-field helper="How EXACTLY would developers use this feature?">
+      <image-aware-input
+          v-model="form.api"
           type="textarea"
           float-label="Usage"
           required
@@ -10,14 +10,13 @@
           :rows="2"
       />
     </q-field>
-    <q-field class="q-mt-lg text-right" helper="Note: You can use markdown to format lists and code.">
-      <q-input
-          v-model.trim="form.problem"
+    <q-field class="q-mt-lg text-right">
+      <image-aware-input
+          v-model="form.problem"
           type="textarea"
           required
           float-label="Reason for adding?"
           :rows="2"/>
-
     </q-field>
     <div class="q-caption text-grey-6">
       <ul>
@@ -36,8 +35,11 @@
 
 <script>
 
+import ImageAwareInput from './ImageAwareInput'
+
 export default {
   name: 'FeatureRequest',
+  components: {ImageAwareInput},
   data () {
     return {
       form: {
@@ -51,7 +53,7 @@ export default {
     buildBody () {
       return '#### Usage\n' +
         this.form.api +
-        '\n#### Why?\n' +
+        '\n#### Reason?\n' +
         this.form.problem +
         (this.form.canImplement ? '\n\n#### I Can Implement it.' : '')
     }

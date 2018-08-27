@@ -3,7 +3,8 @@
 
     <div class="col col-lg-8 col-md-10">
       <div class="shadow-1 q-pa-sm">
-        <strong>The Quasar Framework issue tracker is reserved exclusively for bug reports and feature requests.</strong>
+        <strong>The Quasar Framework issue tracker is reserved exclusively for bug reports and feature
+          requests.</strong>
         <div>
           Any questions about usage will be closed immediately.
         </div>
@@ -16,25 +17,31 @@
                  class="q-ma-sm"
                  flat
                  label="Chat on Discord"
-                 @click="openURL('https://discord.gg/5TDhbDg')"/>
+                 type="a"
+                 href="https://discord.gg/5TDhbDg"
+                 target="_blank"
+                 rel="nofollow"/>
 
           <q-btn icon="fa fa-comments"
                  class="q-ma-sm"
                  flat
                  label="Ask the Forum"
-                 @click="openURL('https://forum.quasar-framework.org/')"/>
+                 type="a"
+                 href="https://forum.quasar-framework.org/"
+                 target="_blank"
+                 rel="nofollow"/>
         </div>
       </div>
       <form class="q-mt-md" action="" @submit.prevent="submit">
         <div class="row items-center q-my-sm">
-          <q-field class="col-6">
+          <q-field class="col-xs-12 col-sm-6">
             <q-select
                 v-model="repo" :options="repoOptions"
                 stack-label="Repository"
                 required
             />
           </q-field>
-          <q-field class="col-6 text-center">
+          <q-field class="col-xs-12 col-sm-6 text-center">
             <q-btn-toggle
                 class="q-ma-xs"
                 v-model="type"
@@ -48,7 +55,11 @@
                    float-label="Title"
                    :prefix="prefix"/>
         </q-field>
-        <component :is="formComponent" ref="formComponent" :repo="repo" class="q-my-sm"/>
+        <div class="q-caption text-right q-mt-lg text-grey-6">
+          Note: You can use markdown to format lists and code. <br>
+          Paste a link to add a screenshot
+        </div>
+        <component :is="formComponent" ref="formComponent" :repo="repo" class=""/>
         <div class="float-right q-ma-lg">
 
           <q-btn @click="updatePreview">
@@ -154,5 +165,10 @@ export default {
     font-size: x-large;
     margin-top: 5px;
     margin-bottom: 0;
+  }
+
+  .preview img {
+    max-height: 100vh;
+    max-width: 50vw;
   }
 </style>
