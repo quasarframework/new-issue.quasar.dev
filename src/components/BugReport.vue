@@ -185,6 +185,9 @@ ${this.reproductionLink ? `
 #### Reproduction link
 ${this.reproductionLink}` : ``}
 #### Info
+${this.repo.name} Version: ${this.version}
+
+Build mode:${this.buildMode.map(mode => ` ${mode}`)}
 \`\`\`
 ${this.quasarInfo}
 \`\`\`
