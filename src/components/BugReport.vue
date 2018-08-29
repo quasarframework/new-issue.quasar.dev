@@ -175,10 +175,8 @@ export default {
     buildBody () {
       return `#### Steps
 ${this.reproductionSteps}
-
 #### Expected
 ${this.expected}
-
 #### Actual
 ${this.actual}
 ${this.reproductionLink ? `
@@ -186,7 +184,6 @@ ${this.reproductionLink ? `
 ${this.reproductionLink}` : ``}
 #### Info
 ${this.repo.name} Version: ${this.version}
-
 Build mode:${this.buildMode.map(mode => ` ${mode}`)}
 \`\`\`
 ${this.quasarInfo}
