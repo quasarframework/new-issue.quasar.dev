@@ -60,6 +60,26 @@
           Paste a link to add a screenshot
         </div>
         <component :is="formComponent" ref="formComponent" :repo="repo" class=""/>
+        <div class="row gutter-md q-mt-xs">
+          <div class="col-xs-12 col-sm-6">
+            <q-field>
+              <q-checkbox class="text-grey-6" v-model="patron" label="I am a patron."/>
+            </q-field>
+            <q-field v-if="patron">
+              <q-input type="text"
+                       v-model="patronName"
+                       float-label="Patreon name"
+                       :required="patron"/>
+            </q-field>
+
+            <q-field class="q-pt-md" helper="Do you want to offer a reward for solving this issue?">
+              <q-input v-model="reward" float-label="Bounty" type="number"
+                       prefix="$"/>
+            </q-field>
+          </div>
+
+        </div>
+
         <div class="float-right q-ma-lg">
 
           <q-btn @click="updatePreview">
@@ -111,7 +131,10 @@ export default {
       repoOptions: repoOptions,
       repo: repoOptions[0].value,
       preview: '',
-      showPreview: false
+      showPreview: false,
+      patron: false,
+      patronName: '',
+      reward: ''
     }
   },
   computed: {
