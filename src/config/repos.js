@@ -24,10 +24,6 @@ const repos = [
     name: 'Quasar starter kit'
   },
   {
-    id: 'quasarframework/quasar-starter-kit-umd',
-    name: 'UMD starter kit'
-  },
-  {
     id: 'quasarframework/quasar-template-meteor',
     name: 'Quasar Meteor starter kit'
   },
