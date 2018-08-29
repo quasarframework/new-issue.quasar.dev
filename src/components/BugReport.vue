@@ -156,7 +156,7 @@ export default {
       expected: '',
       actual: '',
       version: '',
-      quasarInfo: '',
+      quasarInfo: '```\n\n```',
       reproductionLink: '',
       buildMode: [],
       buildModeOptions,
@@ -185,9 +185,7 @@ ${this.reproductionLink}` : ``}
 #### Info
 ${this.repo.name} Version: ${this.version}
 Build mode:${this.buildMode.map(mode => ` ${mode}`)}
-\`\`\`
 ${this.quasarInfo}
-\`\`\`
 `
     },
     fetchVersions () {
