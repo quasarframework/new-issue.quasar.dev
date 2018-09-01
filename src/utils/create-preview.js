@@ -1,7 +1,6 @@
 import marked from 'marked'
 
 export default function (markdown) {
-
   // This is here because marked for some reason refuses to
   // render some line breaks
   markdown = markdown.replace(/\n/g, '\n\n')
