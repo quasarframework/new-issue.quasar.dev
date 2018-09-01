@@ -154,7 +154,11 @@ export default {
       return `${this.prefix} ${this.title}`
     },
     buildBody () {
-      return this.$refs.formComponent.buildBody()
+      return `${this.$refs.formComponent.buildBody()}
+
+
+ ${this.patron ? ` - [x] Patron: ${this.patronName}` : ''}
+ ${this.reward > 0 ? ` - [x] Bounty: ${this.reward}` : ''}`
     },
     submit () {
       openGithubIssue(this.buildTitle(), this.buildBody(), this.repo.id)
