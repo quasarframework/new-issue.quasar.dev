@@ -65,7 +65,7 @@
             <q-field>
               <q-checkbox class="text-grey-6" v-model="patron" label="I am a patron."/>
             </q-field>
-            <q-field v-if="patron">
+            <q-field v-if="patron" class="q-pt-md">
               <q-input type="text"
                        v-model="patronName"
                        float-label="Patreon name"
