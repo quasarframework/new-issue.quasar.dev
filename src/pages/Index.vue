@@ -32,7 +32,7 @@
                  rel="nofollow"/>
         </div>
       </div>
-      <form class="q-mt-md" action="" @submit.prevent="submit">
+      <form class="q-mt-md" action="" @submit.prevent="submit" ref="form">
         <div class="row items-center q-my-sm">
           <q-field class="col-xs-12 col-sm-6">
             <q-select
@@ -82,24 +82,25 @@
 
         <div class="float-right q-ma-lg">
 
-          <q-btn @click="updatePreview">
+          <q-btn @click="updatePreview" color="primary">
             Preview
           </q-btn>
-          <q-btn class="on-right" type="submit" @submit.prevent="submit" color="primary">
-            Post
-          </q-btn>
         </div>
-      </form>
-      <q-modal v-model="showPreview" content-classes="q-pa-md round-borders">
-        <div>
-          <div v-html="preview" class="preview">
+        <q-modal v-model="showPreview" content-classes="q-pa-md round-borders">
+          <div>
+            <div v-html="preview" class="preview">
 
+            </div>
+            <q-btn v-close-overlay class="">
+              Close
+            </q-btn>
+            <q-btn v-close-overlay class="on-right" @click="submitFromModal" color="primary">
+              Post
+            </q-btn>
           </div>
-          <q-btn v-close-overlay class="float-right">
-            Close
-          </q-btn>
-        </div>
-      </q-modal>
+        </q-modal>
+      </form>
+
     </div>
   </q-page>
 </template>
@@ -146,6 +147,15 @@ export default {
     }
   },
   methods: {
+    submitFromModal () {
+      // This timeout is here to postpone validation check after modal is closed,
+      // otherwise native validation reporting is not triggered
+      setTimeout(() => {
+        if (this.$refs.form.reportValidity()) {
+          this.submit()
+        }
+      }, 0)
+    },
     updatePreview () {
       this.preview = createPreview(this.buildBody())
       this.showPreview = true
@@ -189,7 +199,8 @@ export default {
 
 <style>
   .preview h4 {
-    font-size: x-large;
+    font-size: large;
+    font-weight: bold;
     margin-top: 5px;
     margin-bottom: 0;
   }
