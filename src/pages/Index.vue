@@ -32,7 +32,7 @@
                  rel="nofollow"/>
         </div>
       </div>
-      <form class="q-mt-md" action="" @submit.prevent="submit">
+      <form class="q-mt-md" action="" @submit.prevent="submit" ref="form">
         <div class="row items-center q-my-sm">
           <q-field class="col-xs-12 col-sm-6">
             <q-select
@@ -60,26 +60,47 @@
           Paste a link to add a screenshot
         </div>
         <component :is="formComponent" ref="formComponent" :repo="repo" class=""/>
+        <div class="row gutter-md q-mt-xs">
+          <div class="col-xs-12 col-sm-6">
+            <q-field>
+              <q-checkbox class="text-grey-6" v-model="patron" label="I am a patron."/>
+            </q-field>
+            <q-field v-if="patron" class="q-pt-md">
+              <q-input type="text"
+                       v-model="patronName"
+                       float-label="Patreon name"
+                       :required="patron"/>
+            </q-field>
+
+            <q-field class="q-pt-md" helper="Do you want to offer a reward for solving this issue?">
+              <q-input v-model="reward" float-label="Bounty" type="number"
+                       prefix="$"/>
+            </q-field>
+          </div>
+
+        </div>
+
         <div class="float-right q-ma-lg">
 
-          <q-btn @click="updatePreview">
+          <q-btn @click="updatePreview" color="primary">
             Preview
           </q-btn>
-          <q-btn class="on-right" type="submit" @submit.prevent="submit" color="primary">
-            Post
-          </q-btn>
         </div>
-      </form>
-      <q-modal v-model="showPreview" content-classes="q-pa-md round-borders">
-        <div>
-          <div v-html="preview" class="preview">
+        <q-modal v-model="showPreview" content-classes="q-pa-md round-borders">
+          <div>
+            <div v-html="preview" class="preview">
 
+            </div>
+            <q-btn v-close-overlay class="">
+              Close
+            </q-btn>
+            <q-btn v-close-overlay class="on-right" @click="submitFromModal" color="primary">
+              Post
+            </q-btn>
           </div>
-          <q-btn v-close-overlay class="float-right">
-            Close
-          </q-btn>
-        </div>
-      </q-modal>
+        </q-modal>
+      </form>
+
     </div>
   </q-page>
 </template>
@@ -111,7 +132,10 @@ export default {
       repoOptions: repoOptions,
       repo: repoOptions[0].value,
       preview: '',
-      showPreview: false
+      showPreview: false,
+      patron: false,
+      patronName: '',
+      reward: ''
     }
   },
   computed: {
@@ -123,6 +147,15 @@ export default {
     }
   },
   methods: {
+    submitFromModal () {
+      // This timeout is here to postpone validation check after modal is closed,
+      // otherwise native validation reporting is not triggered
+      setTimeout(() => {
+        if (this.$refs.form.reportValidity()) {
+          this.submit()
+        }
+      }, 0)
+    },
     updatePreview () {
       this.preview = createPreview(this.buildBody())
       this.showPreview = true
@@ -131,7 +164,11 @@ export default {
       return `${this.prefix} ${this.title}`
     },
     buildBody () {
-      return this.$refs.formComponent.buildBody()
+      return `${this.$refs.formComponent.buildBody()}
+
+
+ ${this.patron ? ` - [x] Patron: ${this.patronName}` : ''}
+ ${this.reward > 0 ? ` - [x] Bounty: ${this.reward}` : ''}`
     },
     submit () {
       openGithubIssue(this.buildTitle(), this.buildBody(), this.repo.id)
@@ -162,7 +199,8 @@ export default {
 
 <style>
   .preview h4 {
-    font-size: x-large;
+    font-size: large;
+    font-weight: bold;
     margin-top: 5px;
     margin-bottom: 0;
   }

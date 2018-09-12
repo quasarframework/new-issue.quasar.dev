@@ -55,7 +55,7 @@ export default {
         this.form.api +
         '\n#### Reason?\n' +
         this.form.problem +
-        (this.form.canImplement ? '\n\n#### I Can Implement it.' : '')
+        (this.form.canImplement ? '\n\n - [x] I Can Implement it.' : '')
     }
   }
 }

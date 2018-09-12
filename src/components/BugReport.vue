@@ -49,7 +49,7 @@
         </ul>
       </div>
     </div>
-    <div class="row gutter-sm q-my-sm">
+    <div class="row gutter-md q-my-sm">
 
       <div class="col-xs-12 col-sm-6">
         <q-field>
@@ -77,6 +77,12 @@
         <div class="q-caption q-mt-sm text-grey-6">
           Please have a look to see if the issue hasn't already been resolved in the latest version or in dev branch.
         </div>
+        <q-field class="q-pt-lg">
+          <q-select v-model="buildMode"
+                    :options="buildModeOptions"
+                    float-label="Build  Mode"
+                    multiple/>
+        </q-field>
       </div>
 
       <div class="col-xs-12 col-sm-6">
@@ -130,6 +136,9 @@
 
 <script>
 import ImageAwareInput from './ImageAwareInput'
+import { buildModes } from '../config'
+
+const buildModeOptions = buildModes.map(mode => ({label: mode, value: mode}))
 
 export default {
   name: 'BugReport',
@@ -147,8 +156,10 @@ export default {
       expected: '',
       actual: '',
       version: '',
-      quasarInfo: '',
+      quasarInfo: '```\n\n```',
       reproductionLink: '',
+      buildMode: [],
+      buildModeOptions,
       versions: {
         // Property name that will be used by filter() to filter the array of objects below.
         field: 'version',
@@ -164,19 +175,17 @@ export default {
     buildBody () {
       return `#### Steps
 ${this.reproductionSteps}
-
 #### Expected
 ${this.expected}
-
 #### Actual
 ${this.actual}
 ${this.reproductionLink ? `
 #### Reproduction link
 ${this.reproductionLink}` : ``}
 #### Info
-\`\`\`
+${this.repo.name} Version: ${this.version}
+Build mode:${this.buildMode.map(mode => ` ${mode}`)}
 ${this.quasarInfo}
-\`\`\`
 `
     },
     fetchVersions () {
