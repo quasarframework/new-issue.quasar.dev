@@ -186,7 +186,7 @@ export default {
       },
       type: issueTypes[0],
       repoOptions: repoOptions,
-      repo: repoOptions[0].value,
+      repo: {},
       preview: '',
       showPreview: false,
       patron: false,
@@ -303,6 +303,7 @@ export default {
         this.repo = repoOption.value
       }
     }
+    this.repo = repoOptions[0].value
   }
 }
 
