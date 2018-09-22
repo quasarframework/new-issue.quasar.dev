@@ -102,11 +102,11 @@
         </div>
 
         <div class="float-right q-ma-lg">
-
-          <q-btn id="preview" @click="updatePreview('preview')" color="primary">
+          <q-btn @click="updatePreview" color="primary">
             Preview
           </q-btn>
         </div>
+
         <q-modal 
           v-model="showPreview"
           content-classes="q-pa-md round-borders"
@@ -248,7 +248,7 @@ export default {
     updatePreview () {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        const id = 'previeErrorText'
+        const id = 'previewErrorText'
         this.showInfo(id)
         return
       }

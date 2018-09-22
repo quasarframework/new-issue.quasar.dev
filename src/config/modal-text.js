@@ -41,7 +41,7 @@ How will it make current workarounds straightforward?
 What potential bugs and edge cases does it help to avoid?
         `
     },
-    previeErrorText: {
+    previewErrorText: {
         title: `#### Oops! Aren't you missing something?`,
         message: `
 Please fill in all mandatory fields. Doing so will help us to help you!
