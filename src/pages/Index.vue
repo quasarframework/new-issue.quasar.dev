@@ -14,7 +14,7 @@
               <li>Giving us reproduction steps speeds up the fix process.</li>
               <li>Demonstrating the issue with reproduction code (fiddle, codepen, repo) is even better.</li>
               <li>Be minimal - include ONLY what is needed to make the bug happen</li>
-              <li>Any questions about usage will be closed immediately.</li>
+              <li>Any questions about usage or issues written in any langauge other than English will be closed immediately.</li>
             </ul>
         </div>
         <div>
