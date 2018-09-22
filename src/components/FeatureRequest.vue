@@ -1,61 +1,82 @@
 <template>
   <div>
-    <q-field helper="How EXACTLY would developers use this feature?">
+    <q-field 
+      helper="How EXACTLY would developers use this feature?"
+      :error="this.v.featureForm.api.$error"
+      error-label="Please tell us how this should be used by other developers."
+    >
       <image-aware-input
-          v-model="form.api"
-          type="textarea"
-          float-label="Usage"
-          required
-          placeholder="E.g. <new-component :new-prop /> ..."
-          :rows="2"
+        id="api"
+        v-model="formFields.api"
+        type="textarea"
+        float-label="Usage*"
+        required
+        placeholder="E.g. <new-component :new-prop /> ..."
+        :rows="4"
+        @blur="checkValidity('api')"
+        :after="[{ icon: 'info_outline', handler: showInfo }]"
       />
     </q-field>
-    <q-field class="q-mt-lg text-right">
+    <q-field
+      helper="Tell us why this is a good idea." 
+      class="q-mt-lg"
+      :error="this.v.featureForm.problem.$error"
+      error-label="Please tell why this is a good idea."
+    >
       <image-aware-input
-          v-model="form.problem"
-          type="textarea"
-          required
-          float-label="Reason for adding?"
-          :rows="2"/>
+        id="problem"
+        v-model="formFields.problem"
+        type="textarea"
+        required
+        float-label="Reason for adding?*"
+        :rows="4"           
+        @blur="checkValidity('problem')"
+        :after="[{ icon: 'info_outline', handler: showInfo }]"
+      />
     </q-field>
-    <div class="q-caption text-grey-6">
-      <ul>
-        <li>What this feature means for your product?</li>
-        <li>What will it allow you to do that you can't do today?</li>
-        <li>How will it make current workarounds straightforward?</li>
-        <li>What potential bugs and edge cases does it help to avoid?</li>
-      </ul>
-    </div>
-    <q-field class="q-mt-xl" helper="Are you willing to implement this feature?">
-      <q-checkbox class="text-grey-6" v-model="form.canImplement" label="I can implement this."/>
+    <q-field class="q-mt-xl" helper="Are you willing to implement this feature yourself?">
+      <q-checkbox class="text-grey-6" v-model="canImplement" label="I can implement this."/>
     </q-field>
-
   </div>
 </template>
 
 <script>
 
 import ImageAwareInput from './ImageAwareInput'
+import formatMarkdown from '../utils/format-markdown'
 
 export default {
   name: 'FeatureRequest',
   components: {ImageAwareInput},
+  props: {
+    v: {
+      type: Object,
+      required: true
+    },
+    formFields: { 
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
-      form: {
-        api: '',
-        problem: '',
-        canImplement: false
-      }
+      canImplement: false
     }
   },
   methods: {
     buildBody () {
       return '#### Usage\n' +
-        this.form.api +
+        this.formFields.api +
         '\n#### Reason?\n' +
-        this.form.problem +
-        (this.form.canImplement ? '\n\n - [x] I Can Implement it.' : '')
+        this.formFields.problem +
+        (this.canImplement ? '\n\n - [x] I Can Implement it.' : '')
+    },
+    checkValidity (field) {
+      this.$emit('validate', field)
+    },
+    showInfo(e) {
+      const id = e.target.parentElement.id
+      this.$emit('showInfo', id)
     }
   }
 }

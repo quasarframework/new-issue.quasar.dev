@@ -2,13 +2,21 @@
   <q-page padding class="row justify-center">
 
     <div class="col col-lg-8 col-md-10">
-      <div class="shadow-1 q-pa-sm">
-        <strong>The Quasar Framework issue tracker is reserved exclusively for bug reports and feature
-          requests.</strong>
+      <q-slide-transition>
+      <div v-if="showHeaderInfo" class="shadow-1 q-pa-sm">
+        <q-btn icon="clear" flat style="float: right" no-ripple @click="showHeaderInfo = false"></q-btn>
+        <strong><p>Thanks for contributing to Quasar!</p>
+        <p>Issues created for any Quasar Framework repository are reserved exclusively for bug reports and feature requests.</p></strong> 
         <div>
-          Any questions about usage will be closed immediately.
+          <strong>Important!</strong>
+            <ul>
+              <li>Bug reports that we cannot reproduce cannot be fixed.</li>
+              <li>Giving us reproduction steps speeds up the fix process.</li>
+              <li>Demonstrating the issue with reproduction code (fiddle, codepen, repo) is even better.</li>
+              <li>Be minimal - include ONLY what is needed to make the bug happen</li>
+              <li>Any questions about usage will be closed immediately.</li>
+            </ul>
         </div>
-
         <div>
           <strong>
             To get help:
@@ -25,41 +33,53 @@
           <q-btn icon="fa fa-comments"
                  class="q-ma-sm"
                  flat
-                 label="Ask the Forum"
+                 label="Ask in the Forum"
                  type="a"
                  href="https://forum.quasar-framework.org/"
                  target="_blank"
                  rel="nofollow"/>
         </div>
       </div>
+      </q-slide-transition>
       <form class="q-mt-md" action="" @submit.prevent="submit" ref="form">
         <div class="row items-center q-my-sm">
           <q-field class="col-xs-12 col-sm-6">
             <q-select
                 v-model="repo" :options="repoOptions"
                 stack-label="Repository"
-                required
             />
           </q-field>
           <q-field class="col-xs-12 col-sm-6 text-center">
             <q-btn-toggle
-                class="q-ma-xs"
-                v-model="type"
-                toggle-color="primary"
-                :options="issueTypes"/>
+              class="q-ma-xs"
+              v-model="type"
+              toggle-color="primary"
+              :options="issueTypes"/>
           </q-field>
         </div>
 
-        <q-field helper="Descriptive - We must understand you without opening the issue!" class="q-my-sm">
-          <q-input v-model.trim="title"
-                   float-label="Title"
-                   :prefix="prefix"/>
+        <q-field 
+          helper="Be descriptive - We must understand the issue before even opening it!" 
+          class="q-my-sm"
+          :error="$v.title.$error"
+          error-label="The Title field must be filled in."
+          >
+          <q-input
+            id="title" 
+            v-model="title"
+            float-label="Title*"
+            :prefix="prefix"
+            @blur="$v.title.$touch()"
+                   />
         </q-field>
-        <div class="q-caption text-right q-mt-lg text-grey-6">
-          Note: You can use markdown to format lists and code. <br>
-          Paste a link to add a screenshot
-        </div>
-        <component :is="formComponent" ref="formComponent" :repo="repo" class=""/>
+        <component 
+          :is="formComponent" 
+          ref="formComponent" 
+          :repo="repo" 
+          :v="$v" 
+          @validate="checkValidation"
+          @showInfo="showInfo"
+          :formFields="formFields" class=""/>
         <div class="row gutter-md q-mt-xs">
           <div class="col-xs-12 col-sm-6">
             <q-field>
@@ -69,7 +89,8 @@
               <q-input type="text"
                        v-model="patronName"
                        float-label="Patreon name"
-                       :required="patron"/>
+                       :required="patron"
+              />
             </q-field>
 
             <q-field class="q-pt-md" helper="Do you want to offer a reward for solving this issue?">
@@ -82,11 +103,15 @@
 
         <div class="float-right q-ma-lg">
 
-          <q-btn @click="updatePreview" color="primary">
+          <q-btn id="preview" @click="updatePreview('preview')" color="primary">
             Preview
           </q-btn>
         </div>
-        <q-modal v-model="showPreview" content-classes="q-pa-md round-borders">
+        <q-modal 
+          v-model="showPreview"
+          content-classes="q-pa-md round-borders"
+          content-css="{minWidth: '80vw', minHeight: '80vh'}"
+          >
           <div>
             <div v-html="preview" class="preview">
 
@@ -99,21 +124,36 @@
             </q-btn>
           </div>
         </q-modal>
+        <q-modal 
+          v-model="showInfoModal"
+          content-classes="q-pa-md round-borders"
+          content-css="{minWidth: '80vw', minHeight: '80vh'}"
+        >
+          <div v-html="this.infoModal.title" class="preview">
+          </div>
+          <div v-html="this.infoModal.message" class="preview">
+          </div>
+          <q-btn v-close-overlay class="">
+            Close
+          </q-btn>
+        </q-modal>
       </form>
 
     </div>
   </q-page>
 </template>
 <script>
-import { issueTypeForms, issueTypes, repos } from '../config'
+import { issueTypeForms, issueTypes, repos, modalText } from '../config'
 import BugReport from '../components/BugReport'
 import FeatureRequest from '../components/FeatureRequest'
 import openGithubIssue from '../utils/open-github-issue'
-import createPreview from '../utils/create-preview'
+import formatMarkdown from '../utils/format-markdown'
+import { required } from 'vuelidate/lib/validators'
 
 const repoOptions = repos.map(repo => {
   return {label: repo.name, value: repo}
 })
+
 export default {
   components: {
     BugReport,
@@ -122,12 +162,28 @@ export default {
   data () {
     return {
       title: '',
+      bugForm:{
+         reproductionSteps: '',
+         expected: '',
+         actual: '',
+         version: '',
+         buildMode: []
+      },
+      featureForm: {
+        api: '',
+        problem: ''
+      },
       issueTypes: issueTypes.map(type => (
         {
           label: type.name,
           value: type
         }
       )),
+      showInfoModal: false,
+      infoModal: {
+        title: '',
+        message: ''
+      },
       type: issueTypes[0],
       repoOptions: repoOptions,
       repo: repoOptions[0].value,
@@ -135,7 +191,31 @@ export default {
       showPreview: false,
       patron: false,
       patronName: '',
-      reward: ''
+      reward: '',
+      showHeaderInfo: true
+    }
+  },
+  validations () {
+    if (this.type.id === 'bug') {
+      return {
+        title: { required },
+        bugForm: {
+          reproductionSteps: { required },
+          expected: { required },
+          actual: { required },
+          version: { required },
+          buildMode: { required }
+        }
+      }
+    } 
+    else {
+      return {
+         title: { required },
+         featureForm: { 
+          api: { required },
+          problem: { required }
+        }
+      }
     }
   },
   computed: {
@@ -144,6 +224,15 @@ export default {
     },
     formComponent () {
       return issueTypeForms[this.type.id]
+    },
+    formFields () {
+      this.$v.$reset()
+      if (this.type.id === 'bug') {
+        return this.bugForm
+      }
+      else {
+        return this.featureForm
+      }
     }
   },
   methods: {
@@ -157,21 +246,43 @@ export default {
       }, 0)
     },
     updatePreview () {
-      this.preview = createPreview(this.buildBody())
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        const id = 'previeErrorText'
+        this.showInfo(id)
+        return
+      }
+      this.preview = formatMarkdown(this.buildBody())
       this.showPreview = true
     },
     buildTitle () {
-      return `${this.prefix} ${this.title}`
+      return `${this.prefix} - ${this.title}`
     },
     buildBody () {
-      return `${this.$refs.formComponent.buildBody()}
+      return `#### Title
+ ${this.buildTitle()}
+ ${this.$refs.formComponent.buildBody()}
 
 
  ${this.patron ? ` - [x] Patron: ${this.patronName}` : ''}
  ${this.reward > 0 ? ` - [x] Bounty: ${this.reward}` : ''}`
     },
     submit () {
-      openGithubIssue(this.buildTitle(), this.buildBody(), this.repo.id)
+      openGithubIssue(this.buildTitle(), this.buildBody(), this.repo.id)   
+    },
+    checkValidation (field) {
+      if(!this.$v){ return }
+      if (this.type.id === 'bug') {
+        this.$v.bugForm[field].$touch()
+      }
+      else {
+        this.$v.featureForm[field].$touch()
+      }
+    },
+    showInfo (id) {
+      this.infoModal.title = formatMarkdown(modalText[id].title),
+      this.infoModal.message= formatMarkdown(modalText[id].message)
+      this.showInfoModal = true
     }
   },
   created () {
