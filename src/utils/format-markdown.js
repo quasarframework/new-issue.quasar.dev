@@ -22,5 +22,5 @@ export default function (markdown) {
     return html.replace(/^<a /, '<a target="_blank" rel="nofollow" ')
   }
 
-  return marked(markdown, {renderer})
+  return marked(markdown, { renderer })
 }

@@ -1,39 +1,27 @@
 <template>
   <div>
-    <q-field 
-      helper="How EXACTLY would developers use this feature?"
-      :error="this.v.featureForm.api.$error"
-      error-label="Please tell us how this should be used by other developers."
-    >
       <image-aware-input
-        id="api"
+        refId="api"
+        filled
         v-model="formFields.api"
-        type="textarea"
-        float-label="Usage*"
-        required
+        label="Usage*"
+        hintText="How EXACTLY would developers use this feature?"
         placeholder="E.g. <new-component :new-prop /> ..."
-        :rows="4"
         @blur="checkValidity('api')"
-        :after="[{ icon: 'info_outline', handler: showInfo }]"
+        :error="this.v.featureForm.api.$error"
+        error-label="Please tell us how this should be used by other developers."
       />
-    </q-field>
-    <q-field
-      helper="Tell us why this is a good idea." 
-      class="q-mt-lg"
-      :error="this.v.featureForm.problem.$error"
-      error-label="Please tell why this is a good idea."
-    >
       <image-aware-input
-        id="problem"
+        class="q-mt-lg"
+        filled
+        refId="problem"
         v-model="formFields.problem"
-        type="textarea"
-        required
-        float-label="Reason for adding?*"
-        :rows="4"           
+        hintText="Tell us why this is a good idea."
+        label="Reason for adding the feature?*"
         @blur="checkValidity('problem')"
-        :after="[{ icon: 'info_outline', handler: showInfo }]"
+        :error="this.v.featureForm.problem.$error"
+        error-message="Please tell why this is a good idea."
       />
-    </q-field>
     <q-field class="q-mt-xl" helper="Are you willing to implement this feature yourself?">
       <q-checkbox class="text-grey-6" v-model="canImplement" label="I can implement this."/>
     </q-field>
@@ -43,17 +31,16 @@
 <script>
 
 import ImageAwareInput from './ImageAwareInput'
-import formatMarkdown from '../utils/format-markdown'
 
 export default {
   name: 'FeatureRequest',
-  components: {ImageAwareInput},
+  components: { ImageAwareInput },
   props: {
     v: {
       type: Object,
       required: true
     },
-    formFields: { 
+    formFields: {
       type: Object,
       required: true
     }
@@ -74,7 +61,7 @@ export default {
     checkValidity (field) {
       this.$emit('validate', field)
     },
-    showInfo(e) {
+    showInfo (e) {
       const id = e.target.parentElement.id
       this.$emit('showInfo', id)
     }

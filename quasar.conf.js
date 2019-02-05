@@ -2,23 +2,28 @@
 
 module.exports = function (ctx) {
   return {
-    // app plugins (/src/plugins)
-    plugins: [
-      'i18n',
+    // app boot file (/src/boot)
+    // --> boot files are part of "main.js"
+    boot: [
       'axios',
       'vuelidate'
     ],
+
     css: [
       'app.styl'
     ],
+
     extras: [
-      ctx.theme.mat ? 'roboto-font' : null,
-      'material-icons', // optional, you are not bound to it
-      // 'ionicons',
-      // 'mdi',
-      'fontawesome'
+      'roboto-font',
+      'material-icons' // optional, you are not bound to it
+      // 'ionicons-v4',
+      // 'mdi-v3',
+      // 'fontawesome-v5',
+      // 'eva-icons'
     ],
-    supportIE: true,
+
+    supportIE: false,
+
     build: {
       scopeHoisting: true,
       // vueRouterMode: 'history',
@@ -31,61 +36,72 @@ module.exports = function (ctx) {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules|quasar)/
+          exclude: /node_modules/,
+          options: {
+            cache: true
+          }
         })
       }
     },
+
     devServer: {
       // https: true,
-      // port: 8080,
+      port: 8082,
       open: true // opens browser window automatically
     },
+
     // framework: 'all' --- includes everything; for dev only!
     framework: {
       components: [
+        'QBtn',
+        'QBtnToggle',
+        'QCard',
+        'QCardSection',
+        'QCardActions',
+        'QCheckbox',
+        'QDialog',
+        'QField',
+        'QIcon',
+        'QInput',
+        'QItem',
+        'QItemSection',
+        'QList',
+        'QItemLabel',
         'QLayout',
-        'QLayoutHeader',
-        'QLayoutFooter',
+        'QFooter',
+        'QHeader',
+        'QDrawer',
         'QPageContainer',
         'QPage',
+        'QSelect',
+        'QSeparator',
+        'QSlideTransition',
+        'QSpace',
         'QToolbar',
         'QToolbarTitle',
-        'QBtn',
-        'QIcon',
-        'QList',
-        'QListHeader',
-        'QItem',
-        'QItemMain',
-        'QItemSide',
-        'QTooltip',
-        'QStepper',
-        'QStep',
-        'QStepperNavigation',
-        'QInput',
-        'QField',
-        'QSelect',
-        'QSlideTransition',
-        'QCheckbox',
-        'QBtnToggle',
-        'QAutocomplete',
-        'QModal'
+        'QTooltip'
       ],
       directives: [
         'Ripple',
-        'CloseOverlay'
+        'CloseDialog'
       ],
+
       // Quasar plugins
       plugins: [
         'Notify'
       ]
+
       // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
       // i18n: 'de' // Quasar language
     },
+
     // animations: 'all' --- includes all animations
     animations: [],
+
     ssr: {
       pwa: false
     },
+
     pwa: {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {},
@@ -126,9 +142,11 @@ module.exports = function (ctx) {
         ]
       }
     },
+
     cordova: {
       // id: 'org.cordova.quasar.app'
     },
+
     electron: {
       // bundler: 'builder', // or 'packager'
       extendWebpack (cfg) {
