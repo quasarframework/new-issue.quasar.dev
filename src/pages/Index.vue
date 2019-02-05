@@ -5,9 +5,8 @@
       <q-slide-transition>
         <q-card v-if="showHeaderInfo">
           <q-card-section class="row">
-            <div class="text-h6">Thanks for contributing to Quasar!</div>
-            <q-space />
-            <q-btn class="col-auto" icon="clear" flat no-ripple @click="showHeaderInfo = false"></q-btn>
+            <div class="text-h6 col-10">Thanks for contributing to Quasar!</div>
+            <q-btn class="col-1 q-pr-lg q-pt-lg absolute-top-right" icon="clear" flat no-ripple @click="showHeaderInfo = false"></q-btn>
           </q-card-section>
           <q-card-section>
              <strong><p>Issues created for any Quasar Framework repository are reserved exclusively for bug reports and feature requests.</p></strong>
@@ -20,11 +19,14 @@
                 <li>Any questions about usage or issues written in any langauge other than English will be closed immediately.</li>
               </ul>
           </q-card-section>
-          <q-card-section>
-            <strong>
+          <q-card-section class="row">
+            <div class="col-12">
+              <strong>
               To get help:
-            </strong>
-            <q-btn icon="fab fa-discord"
+              </strong>
+            </div>
+            <q-btn
+              icon="fab fa-discord"
               class="q-ma-sm"
               flat
               label="Chat on Discord"
@@ -33,7 +35,8 @@
               target="_blank"
               rel="nofollow"
             />
-            <q-btn icon="fa fa-comments"
+            <q-btn
+              icon="fa fa-comments"
               class="q-ma-sm"
               flat
               label="Ask in the Forum"
@@ -47,14 +50,14 @@
       </q-slide-transition>
       <form action="" @submit.prevent="submit" autocomplete="off" ref="form">
         <div class="row q-col-gutter-md q-mt-xs items-center">
-          <div class="col-sm-5 col-xs-12">
+          <div class="col-sm-5 col-xs-12 text-center">
             <q-btn-toggle
             v-model="type"
             toggle-color="primary"
             :options="issueTypes"
             />
           </div>
-          <div class="col-xs-12 col-sm-7 q-mt-xs">
+          <div class="col-sm-7 col-xs-12 q-mt-xs">
             <q-select
               filled
               expand-besides
@@ -217,7 +220,7 @@ export default {
   },
   computed: {
     prefix () {
-      return this.type.prefix
+      return `[${this.type.prefix}]`
     },
     formComponent () {
       return issueTypeForms[this.type.id]
@@ -250,7 +253,15 @@ export default {
       this.showPreview = true
     },
     buildTitle () {
-      return `${this.prefix} - ${this.title}`
+      let version = '',
+        repoName = ''
+      if (this.versionRequired) {
+        version = this.bugForm.version + ' - '
+      }
+      if (this.repo.dataFilter[0] === '1') {
+        repoName = this.repo.name + ' - '
+      }
+      return `[${repoName}${version}${this.type.prefix}] - ${this.title}`
     },
     buildBody () {
       return `#### Title

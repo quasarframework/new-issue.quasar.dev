@@ -6,13 +6,6 @@
         <q-toolbar-title>
           New Issue Helper
         </q-toolbar-title>
-
-        <q-btn v-for="link in links" :key="link.link"
-               flat size="lg" class="q-pa-sm"
-               :href="link.link" target="_blank" rel="nofollow" type="a"
-               :icon="link.icon">
-          <q-tooltip>{{link.label}}</q-tooltip>
-        </q-btn>
       </q-toolbar>
     </q-header>
 
@@ -35,32 +28,6 @@
 
 <script>
 export default {
-  name: 'MyLayout',
-  data () {
-    return {
-      links: [
-        {
-          link: 'https://quasar-framework.org/guide/',
-          label: 'Documentation',
-          icon: 'fa fa-book'
-        },
-        {
-          link: 'https://discord.gg/5TDhbDg',
-          label: 'Discord',
-          icon: 'fab fa-discord'
-        },
-        {
-          link: 'https://forum.quasar-framework.org/',
-          label: 'Forum',
-          icon: 'fa fa-comments'
-        },
-        {
-          link: 'https://github.com/quasarframework',
-          label: 'GitHub',
-          icon: 'fab fa-github'
-        }
-      ]
-    }
-  }
+  name: 'MyLayout'
 }
 </script>

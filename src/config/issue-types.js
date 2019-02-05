@@ -2,12 +2,12 @@ const issueTypes = [
   {
     id: 'bug',
     name: 'Bug Report',
-    prefix: '[Bug]'
+    prefix: 'Bug'
   },
   {
     id: 'request',
     name: 'Feature Request',
-    prefix: '[Request]'
+    prefix: 'Request'
   }
 ]
 
