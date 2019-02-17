@@ -14,7 +14,6 @@
     "@quasar/extras": "^1.0.0-alpha.0",
     "axios": "^0.18.0",
     "is-image-url": "^1.1.8",
-    "marked": "^0.6.0",
     "quasar": "^1.0.0-alpha.0",
     "vuelidate": "^0.7.4"
   },

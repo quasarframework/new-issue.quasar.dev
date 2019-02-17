@@ -2,27 +2,27 @@ const repos = [
   {
     id: 'quasarframework/quasar',
     name: 'Quasar',
-    dataFilter: ['0.17', '0.16', '0.15']
+    dataFilter: ['1.0', '0.17']
   },
   {
     id: 'quasarframework/quasar',
     name: '@quasar/docs',
-    dataFilter: ['1']
+    dataFilter: ['1.0']
   },
   {
     id: 'quasarframework/quasar',
     name: '@quasar/extras',
-    dataFilter: ['1']
+    dataFilter: ['1.0']
   },
   {
     id: 'quasarframework/quasar',
     name: '@quasar/cli',
-    dataFilter: ['1']
+    dataFilter: ['1.0']
   },
   {
     id: 'quasarframework/quasar',
     name: '@quasar/app',
-    dataFilter: ['1']
+    dataFilter: ['1.0']
   },
   {
     id: 'quasarframework/quasar-cli',

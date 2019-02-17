@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import formatMarkdown from '../utils/format-markdown'
 import { dialogText } from '../config'
 
 export default {
@@ -44,7 +43,7 @@ export default {
   methods: {
     showInfo (id) {
       this.infoDialogData.title = dialogText[id].title
-      this.infoDialogData.message = formatMarkdown(dialogText[id].message)
+      this.infoDialogData.message = dialogText[id].message
       this.showInfoDialog = true
     }
   }

@@ -67,16 +67,16 @@
       </div>
       <div class="col-xs-12 col-sm-6">
         <q-select
-          v-model="formFields.buildMode"
+          v-model="formFields.buildModes"
           filled
           expand-besides
           emit-value
           :options="buildModeOptions"
           label="Build Mode*"
           multiple
-          @blur="checkValidity('buildMode')"
+          @blur="checkValidity('buildModes')"
           hint="Select the build modes you are using."
-          :error="this.v.bugForm.buildMode.$error"
+          :error="this.v.bugForm.buildModes.$error"
           error-message="You must select the build modes you are using."
         />
      </div>
@@ -96,7 +96,7 @@
       class="col-xs-12 col-sm-6"
       filled
       autogrow
-      v-model="quasarInfo"
+      v-model="formFields.quasarInfo"
       type="textarea"
       label="System info"
       placeholder="Win 95, Firefox 11, ..."
@@ -130,7 +130,6 @@ export default {
   },
   data () {
     return {
-      quasarInfo: '',
       buildModeOptions,
       versions: {
         // Property name that will be used by filter() to filter the array of objects below.
@@ -156,8 +155,8 @@ ${this.reproductionLink ? `
 ${this.reproductionLink}` : ``}
 #### System Info
 ${this.repo.name} Version: ${this.formFields.version}
-Build mode:${this.formFields.buildMode.map(mode => ` ${mode}`)}
-${this.quasarInfo}
+Build mode:${this.formFields.buildModes.map(mode => ` ${mode}`)}
+${this.formFields.quasarInfo}
 `
     },
     fetchVersions () {

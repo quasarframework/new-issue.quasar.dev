@@ -125,7 +125,14 @@
         >
           <q-card style="width: 600px">
             <q-card-section>
-                <div v-html="preview" />
+              <div class="text-h6">Title</div>
+              <div>[{{ formFields.version.label }} - Bug] - {{ title }}</div>
+              <preview :formFields="formFields" :issueType="type.id" />
+              <div class="text-h6">General Info</div>
+              <div>{{ repo.name }} Version: {{ formFields.version.label}}</div>
+              <div>Build Modes: {{ formFields.buildModes.map(mode => ` ${mode}`) }} </div>
+              <div class="text-h6">System Info:</div>
+              <pre>{{ formFields.quasarInfo }} </pre>
             </q-card-section>
             <q-card-actions class="on-right">
               <q-btn v-close-dialog>
@@ -145,8 +152,8 @@
 import { issueTypeForms, issueTypes, repos } from '../config'
 import BugReport from '../components/BugReport'
 import FeatureRequest from '../components/FeatureRequest'
+import Preview from '../components/Preview'
 import openGithubIssue from '../utils/open-github-issue'
-import formatMarkdown from '../utils/format-markdown'
 import { required, requiredIf, url } from 'vuelidate/lib/validators'
 
 const repoOptions = repos.map(repo => {
@@ -156,7 +163,8 @@ const repoOptions = repos.map(repo => {
 export default {
   components: {
     BugReport,
-    FeatureRequest
+    FeatureRequest,
+    Preview
   },
   data () {
     return {
@@ -166,8 +174,9 @@ export default {
         expected: '',
         actual: '',
         version: '',
-        buildMode: [],
-        reproductionLink: ''
+        buildModes: [],
+        reproductionLink: '',
+        quasarInfo: ''
       },
       featureForm: {
         api: '',
@@ -193,7 +202,7 @@ export default {
   },
   validations () {
     if (this.type.id === 'bug') {
-      return {
+      return { // bug form
         title: { required },
         bugForm: {
           reproductionSteps: { required },
@@ -204,7 +213,7 @@ export default {
               return this.versionsRequired
             })
           },
-          buildMode: { required },
+          buildModes: { required },
           reproductionLink: { url }
         }
       }
@@ -249,7 +258,7 @@ export default {
       if (this.$v.$invalid) {
         return
       }
-      this.preview = formatMarkdown(this.buildBody())
+      this.preview = this.buildBody()
       this.showPreview = true
     },
     buildTitle () {

@@ -9,7 +9,7 @@
         placeholder="E.g. <new-component :new-prop /> ..."
         @blur="checkValidity('api')"
         :error="this.v.featureForm.api.$error"
-        error-label="Please tell us how this should be used by other developers."
+        error-message="Please tell us how this should be used by other developers."
       />
       <image-aware-input
         class="q-mt-lg"
@@ -20,7 +20,7 @@
         label="Reason for adding the feature?*"
         @blur="checkValidity('problem')"
         :error="this.v.featureForm.problem.$error"
-        error-message="Please tell why this is a good idea."
+        error-message="Please tell us why this is a good idea."
       />
     <q-field class="q-mt-xl" helper="Are you willing to implement this feature yourself?">
       <q-checkbox class="text-grey-6" v-model="canImplement" label="I can implement this."/>
